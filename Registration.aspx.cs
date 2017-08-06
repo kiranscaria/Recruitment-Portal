@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 public partial class Registration : System.Web.UI.Page
 {
-    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database = recruitmentdatabase;persistsecurityinfo=True");
+    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database = curaj_recruitment;persistsecurityinfo=True");
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -43,10 +43,12 @@ public partial class Registration : System.Web.UI.Page
             {
 
                 MySqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO user_credentials(Email, acc_password, Mobile_No) values (@email_id,@passwd,@mobileNo)";
+                string hashedPass = Hashing.HashPassword(pwdRegister.Text);
 
+                cmd.CommandText = "INSERT INTO user_credentials(Email, acc_password, Mobile_No) values (@email_id,@passwd,@mobileNo)";
+                
                 cmd.Parameters.AddWithValue("@email_id", regEmail.Text);
-                cmd.Parameters.AddWithValue("@passwd", pwdRegister.Text);
+                cmd.Parameters.AddWithValue("@passwd", hashedPass);
                 cmd.Parameters.AddWithValue("@mobileNo", registerMobile.Text);
 
                 int check = cmd.ExecuteNonQuery();
