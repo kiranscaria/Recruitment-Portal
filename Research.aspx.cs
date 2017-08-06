@@ -24,7 +24,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 
@@ -1064,7 +1064,7 @@ public partial class Research : System.Web.UI.Page
 
 
 
-        MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True");
+        MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True");
 
         try
         {
@@ -1567,7 +1567,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 
@@ -1650,7 +1650,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 
@@ -1678,7 +1678,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 
@@ -1706,7 +1706,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 
@@ -1746,7 +1746,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 
@@ -1775,7 +1775,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 
@@ -1802,7 +1802,7 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True"))
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
                 connection.Open();
 

@@ -4,17 +4,71 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using System.Data;
+using MySql.Data.MySqlClient;
 
 public partial class Experience : System.Web.UI.Page
 {
+    private bool checker = true;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
+        checkCompletion();
+
+    }
+
+    protected void checkCompletion()
+    {
+        if (!this.IsPostBack)
         {
-            FirstGridViewTeachRow();
-            FirstGridViewResearchRow();
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
+            {
+                connection.Open();
+
+                int user_id = 2000; // replace with session variable
+                string retrieve_command = "select * from application_status where User_ID = " + user_id.ToString();
+
+                using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
+                {
+                    //
+                    MySqlDataReader dr = retrieve_details.ExecuteReader();
+                    retrieve_details.Dispose();
+                    System.Diagnostics.Debug.WriteLine("Registered successfully......!");
+
+                    while (dr.Read())
+                    {
+                        if (int.Parse(dr["Experience"].ToString()) == 0)
+                        {
+                            experience.Visible = true;
+
+                            FirstGridViewTeachRow();
+
+                        }
+                        else
+                        {
+                            experience.Visible = false;
+
+                            experiencePreview.Visible = true;
+
+                            experienc_preview();
+
+                        }
+                    }
+                }
+                try
+                {
+
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                    Response.Write("<b>something really bad happened.....Please try again</b> ");
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
         }
     }
     private void FirstGridViewTeachRow()
@@ -28,6 +82,9 @@ public partial class Experience : System.Web.UI.Page
         teach_dt.Columns.Add(new DataColumn("Col4", typeof(string)));
         teach_dt.Columns.Add(new DataColumn("Col5", typeof(string)));
         teach_dt.Columns.Add(new DataColumn("Col6", typeof(string)));
+        teach_dt.Columns.Add(new DataColumn("Col7", typeof(string)));
+        teach_dt.Columns.Add(new DataColumn("Col8", typeof(string)));
+
         teach_dr = teach_dt.NewRow();
         teach_dr["RowNumber"] = 1;
         teach_dr["Col1"] = string.Empty;
@@ -36,6 +93,9 @@ public partial class Experience : System.Web.UI.Page
         teach_dr["Col4"] = string.Empty;
         teach_dr["Col5"] = string.Empty;
         teach_dr["Col6"] = string.Empty;
+        teach_dr["Col7"] = string.Empty;
+        teach_dr["Col8"] = string.Empty;
+
         teach_dt.Rows.Add(teach_dr);
 
         ViewState["CurrentTeachTable"] = teach_dt;
@@ -69,6 +129,8 @@ public partial class Experience : System.Web.UI.Page
                     TextBox experienceTeachSalary = (TextBox)gridFullTeach.Rows[rowIndex].Cells[4].FindControl("experienceTeachSalary");
                     TextBox experienceTeachFrom = (TextBox)gridFullTeach.Rows[rowIndex].Cells[5].FindControl("experienceTeachFrom");
                     TextBox experienceTeachTo = (TextBox)gridFullTeach.Rows[rowIndex].Cells[6].FindControl("experienceTeachTo");
+                    Label lblDuration = (Label)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("lblDuration");
+                    DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[8].FindControl("experienceType");
                     drCurrentRow = dtCurrentTeachTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
@@ -78,6 +140,9 @@ public partial class Experience : System.Web.UI.Page
                     dtCurrentTeachTable.Rows[i - 1]["Col4"] = experienceTeachSalary.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col5"] = experienceTeachFrom.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col6"] = experienceTeachTo.Text;
+                    dtCurrentTeachTable.Rows[i - 1]["Col7"] = lblDuration.Text;
+                    dtCurrentTeachTable.Rows[i - 1]["Col8"] = experienceType.SelectedItem.Text;
+
                     rowIndex++;
                 }
                 dtCurrentTeachTable.Rows.Add(drCurrentRow);
@@ -113,6 +178,8 @@ public partial class Experience : System.Web.UI.Page
                     TextBox experienceTeachSalary = (TextBox)gridFullTeach.Rows[rowIndex].Cells[4].FindControl("experienceTeachSalary");
                     TextBox experienceTeachFrom = (TextBox)gridFullTeach.Rows[rowIndex].Cells[5].FindControl("experienceTeachFrom");
                     TextBox experienceTeachTo = (TextBox)gridFullTeach.Rows[rowIndex].Cells[6].FindControl("experienceTeachTo");
+                    Label lblDuration = (Label)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("lblDuration");
+                    DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[9].FindControl("experienceType");
                     // drCurrentRow["RowNumber"] = i + 1;
 
                     gridFullTeach.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
@@ -122,6 +189,8 @@ public partial class Experience : System.Web.UI.Page
                     experienceTeachSalary.Text = teach_dt.Rows[i]["Col4"].ToString();
                     experienceTeachFrom.Text = teach_dt.Rows[i]["Col5"].ToString();
                     experienceTeachTo.Text = teach_dt.Rows[i]["Col6"].ToString();
+                    lblDuration.Text = teach_dt.Rows[i]["Col7"].ToString();
+                    experienceType.SelectedItem.Text = teach_dt.Rows[i]["Col8"].ToString();
                     rowIndex++;
                 }
             }
@@ -158,6 +227,7 @@ public partial class Experience : System.Web.UI.Page
 
     private void SetRowDataTeach()
     {
+        checker = false;
         int rowIndex = 0;
 
         if (ViewState["CurrentTeachTable"] != null)
@@ -174,6 +244,9 @@ public partial class Experience : System.Web.UI.Page
                     TextBox experienceTeachSalary = (TextBox)gridFullTeach.Rows[rowIndex].Cells[4].FindControl("experienceTeachSalary");
                     TextBox experienceTeachFrom = (TextBox)gridFullTeach.Rows[rowIndex].Cells[5].FindControl("experienceTeachFrom");
                     TextBox experienceTeachTo = (TextBox)gridFullTeach.Rows[rowIndex].Cells[6].FindControl("experienceTeachTo");
+                    Label lblDuration = (Label)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("lblDuration");
+                    DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("experienceType");
+
                     drCurrentRow = dtCurrentTeachTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
                     dtCurrentTeachTable.Rows[i - 1]["Col1"] = experienceTeachUniversityName.Text;
@@ -182,6 +255,8 @@ public partial class Experience : System.Web.UI.Page
                     dtCurrentTeachTable.Rows[i - 1]["Col4"] = experienceTeachSalary.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col5"] = experienceTeachFrom.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col6"] = experienceTeachTo.Text;
+                    dtCurrentTeachTable.Rows[i - 1]["Col7"] = lblDuration.Text;
+                    dtCurrentTeachTable.Rows[i - 1]["Col8"] = experienceType.Text;
                     rowIndex++;
                 }
 
@@ -197,187 +272,134 @@ public partial class Experience : System.Web.UI.Page
         //SetPreviousDataTeach();
     }
 
-    private void FirstGridViewResearchRow()
+    
+    protected void submitExperience_Click(object sender, EventArgs e)
     {
-        DataTable research_dt = new DataTable();
-        DataRow research_dr = null;
-        research_dt.Columns.Add(new DataColumn("RowNumber", typeof(string)));
-        research_dt.Columns.Add(new DataColumn("Col1", typeof(string)));
-        research_dt.Columns.Add(new DataColumn("Col2", typeof(string)));
-        research_dt.Columns.Add(new DataColumn("Col3", typeof(string)));
-        research_dt.Columns.Add(new DataColumn("Col4", typeof(string)));
-        research_dt.Columns.Add(new DataColumn("Col5", typeof(string)));
-        research_dr = research_dt.NewRow();
-        research_dr["RowNumber"] = 1;
-        research_dr["Col1"] = string.Empty;
-        research_dr["Col2"] = string.Empty;
-        research_dr["Col3"] = string.Empty;
-        research_dr["Col4"] = string.Empty;
-        research_dr["Col5"] = string.Empty;
-        research_dt.Rows.Add(research_dr);
+        bool submit_success = false;
+        if (checker)
+            SetRowDataTeach();
+        MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True");
 
-        ViewState["CurrentResearchTable"] = research_dt;
+        try
+        {
+            connection.Open();
+        }
+        catch (MySqlException ex)
+        {
+            //exception while opening the connection
+        }
+    
 
-
-        gridFullResearch.DataSource = research_dt;
-        gridFullResearch.DataBind();
-
-
-        TextBox txn = (TextBox)gridFullResearch.Rows[0].Cells[1].FindControl("experienceResearchUniversityName");
-        txn.Focus();
-        Button btnAdd = (Button)gridFullResearch.FooterRow.Cells[5].FindControl("ButtonAdd");
-        Page.Form.DefaultFocus = btnAdd.ClientID;
-
-    }
-    private void AddNewRowResearch()
-    {
         int rowIndex = 0;
-
-        if (ViewState["CurrentResearchTable"] != null)
+        if (ViewState["CurrentTeachTable"] != null)
         {
-            DataTable dtCurrentResearchTable = (DataTable)ViewState["CurrentResearchTable"];
-            DataRow drCurrentRow = null;
-            if (dtCurrentResearchTable.Rows.Count > 0)
+            DataTable teach_dt = (DataTable)ViewState["CurrentTeachTable"];
+            if (teach_dt.Rows.Count > 0)
             {
-                for (int i = 1; i <= dtCurrentResearchTable.Rows.Count; i++)
+                for (int i = 0; i < teach_dt.Rows.Count; i++)
                 {
-                    TextBox experienceResearchUniversityName = (TextBox)gridFullResearch.Rows[rowIndex].Cells[1].FindControl("experienceResearchUniversityName");
-                    TextBox experienceResearchDesignation = (TextBox)gridFullResearch.Rows[rowIndex].Cells[2].FindControl("experienceResearchDesignation");
-                    TextBox experienceResearchSalary = (TextBox)gridFullResearch.Rows[rowIndex].Cells[3].FindControl("experienceResearchSalary");
-                    TextBox experienceResearchFrom = (TextBox)gridFullResearch.Rows[rowIndex].Cells[4].FindControl("experienceResearchFrom");
-                    TextBox experienceResearchTo = (TextBox)gridFullResearch.Rows[rowIndex].Cells[5].FindControl("experienceResearchTo");
-                    drCurrentRow = dtCurrentResearchTable.NewRow();
-                    drCurrentRow["RowNumber"] = i + 1;
+                   string expTeachingUniversityName = teach_dt.Rows[i]["Col1"].ToString();
+                   string expteachingDesignation = teach_dt.Rows[i]["Col2"].ToString();
+                   string expteachingStatus = teach_dt.Rows[i]["Col3"].ToString();
+                   string expTeachSalary = teach_dt.Rows[i]["Col4"].ToString();
+                   string expTeachFrom = teach_dt.Rows[i]["Col5"].ToString();
+                   string expTeachingTo = teach_dt.Rows[i]["Col6"].ToString();
+                   string duration = teach_dt.Rows[i]["Col7"].ToString();
+                   string expType = teach_dt.Rows[i]["Col8"].ToString();
 
-                    dtCurrentResearchTable.Rows[i - 1]["Col1"] = experienceResearchUniversityName.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col2"] = experienceResearchDesignation.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col3"] = experienceResearchSalary.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col4"] = experienceResearchFrom.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col5"] = experienceResearchTo.Text;
+                    //System.DateTime from = Convert.ToDateTime(expTeachFrom);
+                    //  System.DateTime to = Convert.ToDateTime(expTeachingTo);
+
+                    
+
+                    MySqlCommand cmd = connection.CreateCommand();
+
+                    cmd.CommandText = "INSERT INTO experience_table() values (@uid,@employer,@designation," +
+                                      "@status,@salary,STR_TO_DATE(@from,'%Y-%m-%d'),STR_TO_DATE(@to,'%Y-%m-%d'),@exptype,timestampdiff(MONTH,@from,@to))";
+
+                    cmd.Parameters.AddWithValue("@uid", 2000);
+                    cmd.Parameters.AddWithValue("@employer", expTeachingUniversityName);
+                    cmd.Parameters.AddWithValue("@designation", expteachingDesignation);
+                    cmd.Parameters.AddWithValue("@status", expteachingStatus);
+                    cmd.Parameters.AddWithValue("@salary", expTeachSalary);
+                    cmd.Parameters.AddWithValue("@from", expTeachFrom);
+                    cmd.Parameters.AddWithValue("@to", expTeachingTo);
+                    cmd.Parameters.AddWithValue("@exptype", expType);
+                    //   cmd.Parameters.AddWithValue("@duration", expTeachFrom);
+                    try
+                    {
+                        cmd.ExecuteNonQuery();
+                        submit_success = true;
+                    }
+                    catch (MySqlException ex)
+                    {
+                        // exception while executing the mysql query
+                        System.Diagnostics.Debug.WriteLine(ex.ToString());
+                        submit_success = false;
+                    }
+
+
+                    cmd.Parameters.Clear();
+
                     rowIndex++;
+
+
                 }
-                dtCurrentResearchTable.Rows.Add(drCurrentRow);
-                ViewState["CurrentResearchTable"] = dtCurrentResearchTable;
-
-                gridFullResearch.DataSource = dtCurrentResearchTable;
-                gridFullResearch.DataBind();
-
-                TextBox txn = (TextBox)gridFullResearch.Rows[rowIndex].Cells[1].FindControl("experienceResearchUniversityName");
-                txn.Focus();
-                // txn.Focus;
             }
         }
-        else
+        if (submit_success)
         {
-            Response.Write("ViewState is null");
-        }
-        SetPreviousDataResearch();
-    }
-    private void SetPreviousDataResearch()
-    {
-        int rowIndex = 0;
-        if (ViewState["CurrentResearchTable"] != null)
-        {
-            DataTable research_dt = (DataTable)ViewState["CurrentResearchTable"];
-            if (research_dt.Rows.Count > 0)
+            int user_id = 2000;
+            string insert_com = "update application_status set Experience = 1 where User_ID = " + user_id.ToString();
+            using (MySqlCommand update_details = new MySqlCommand(insert_com, connection))
             {
-                for (int i = 0; i < research_dt.Rows.Count; i++)
+                try
                 {
-                    TextBox experienceResearchUniversityName = (TextBox)gridFullResearch.Rows[rowIndex].Cells[1].FindControl("experienceResearchUniversityName");
-                    TextBox experienceResearchDesignation = (TextBox)gridFullResearch.Rows[rowIndex].Cells[2].FindControl("experienceResearchDesignation");
-                    TextBox experienceResearchSalary = (TextBox)gridFullResearch.Rows[rowIndex].Cells[3].FindControl("experienceResearchSalary");
-                    TextBox experienceResearchFrom = (TextBox)gridFullResearch.Rows[rowIndex].Cells[4].FindControl("experienceResearchFrom");
-                    TextBox experienceResearchTo = (TextBox)gridFullResearch.Rows[rowIndex].Cells[5].FindControl("experienceResearchTo");
-                    // drCurrentRow["RowNumber"] = i + 1;
-
-                    gridFullResearch.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
-                    experienceResearchUniversityName.Text = research_dt.Rows[i]["Col1"].ToString();
-                    experienceResearchDesignation.Text = research_dt.Rows[i]["Col2"].ToString();
-                    experienceResearchSalary.Text = research_dt.Rows[i]["Col3"].ToString();
-                    experienceResearchFrom.Text = research_dt.Rows[i]["Col4"].ToString();
-                    experienceResearchTo.Text = research_dt.Rows[i]["Col5"].ToString();
-                    rowIndex++;
+                    update_details.ExecuteNonQuery();
+                    update_details.Dispose();
+                    System.Diagnostics.Debug.WriteLine("Registered successfully......!");
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex);
+                    Response.Write("<b>something really bad happened.....Please try again</b> ");
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
         }
+
+        Response.Redirect("Research.aspx");
     }
-    protected void ButtonAddResearch_Click(object sender, EventArgs e)
+
+    protected void experienc_preview()
     {
-        AddNewRowResearch();
-    }
-    protected void gridFullResearch_RowDeleting(object sender, GridViewDeleteEventArgs e)
-    {
-        SetRowDataResearch();
-        if (ViewState["CurrentResearchTable"] != null)
+        if (!this.IsPostBack)
         {
-            DataTable research_dt = (DataTable)ViewState["CurrentResearchTable"];
-            DataRow drCurrentRow = null;
-            int rowIndex = Convert.ToInt32(e.RowIndex);
-            if (research_dt.Rows.Count > 1)
+            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
             {
-                research_dt.Rows.Remove(research_dt.Rows[rowIndex]);
-                drCurrentRow = research_dt.NewRow();
-                ViewState["CurrentResearchTable"] = research_dt;
-                gridFullResearch.DataSource = research_dt;
-                gridFullResearch.DataBind();
+                connection.Open();
 
-                for (int i = 0; i < gridFullResearch.Rows.Count - 1; i++)
+                string retrieve_command = "Select Employer, Designation, Status, BasicPay, expFrom, expTo, Duration from experience_table where User_ID = " + 2000;
+
+                using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
-                    gridFullResearch.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
+                    using (MySqlDataAdapter da = new MySqlDataAdapter())
+                    {
+                        da.SelectCommand = retrieve_details;
+                        using (DataTable dt = new DataTable())
+                        {
+                            da.Fill(dt);
+                            experienceGrid.DataSource = dt;
+                            experienceGrid.DataBind();
+                        }
+                    }
                 }
-                SetPreviousDataResearch();
             }
         }
+
     }
 
-    private void SetRowDataResearch()
-    {
-        int rowIndex = 0;
-
-        if (ViewState["CurrentResearchTable"] != null)
-        {
-            DataTable dtCurrentResearchTable = (DataTable)ViewState["CurrentResearchTable"];
-            DataRow drCurrentRow = null;
-            if (dtCurrentResearchTable.Rows.Count > 0)
-            {
-                for (int i = 1; i <= dtCurrentResearchTable.Rows.Count; i++)
-                {
-                    TextBox experienceResearchUniversityName = (TextBox)gridFullResearch.Rows[rowIndex].Cells[1].FindControl("experienceResearchUniversityName");
-                    TextBox experienceResearchDesignation = (TextBox)gridFullResearch.Rows[rowIndex].Cells[2].FindControl("experienceResearchDesignation");
-                    TextBox experienceResearchSalary = (TextBox)gridFullResearch.Rows[rowIndex].Cells[3].FindControl("experienceResearchSalary");
-                    TextBox experienceResearchFrom = (TextBox)gridFullResearch.Rows[rowIndex].Cells[4].FindControl("experienceResearchFrom");
-                    TextBox experienceResearchTo = (TextBox)gridFullResearch.Rows[rowIndex].Cells[5].FindControl("experienceResearchTo");
-                    drCurrentRow = dtCurrentResearchTable.NewRow();
-                    drCurrentRow["RowNumber"] = i + 1;
-                    dtCurrentResearchTable.Rows[i - 1]["Col1"] = experienceResearchUniversityName.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col2"] = experienceResearchDesignation.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col3"] = experienceResearchSalary.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col4"] = experienceResearchFrom.Text;
-                    dtCurrentResearchTable.Rows[i - 1]["Col5"] = experienceResearchTo.Text;
-                    rowIndex++;
-                }
-
-                ViewState["CurrentResearchTable"] = dtCurrentResearchTable;
-                //gridFullResearch.DataSource = dtCurrentResearchTable;
-                //gridFullResearch.DataBind();
-            }
-        }
-        else
-        {
-            Response.Write("ViewState is null");
-        }
-        //SetPreviousDataResearch();
-    }
-
-    protected void experienceEmployed_CheckedChanged(object sender, EventArgs e)
-    {
-        if (experienceEmployed_checkBox.Checked)
-        {
-            experienceEmployed_details.Visible = false;
-        }
-        else
-        {
-            experienceEmployed_details.Visible = true;
-        }
-    }
 }
