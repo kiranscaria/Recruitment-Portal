@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
+
 public partial class Login : System.Web.UI.Page
 {
-    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True");
+    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True");
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
     }
 
     private bool ValidateCredentials(string userName, string password)
@@ -23,8 +25,10 @@ public partial class Login : System.Web.UI.Page
 
             try
             {
-                string sql = "select count(*) from user_credentials where Email = @username and acc_password = @password";
+                string sql = "select count(*) from user_credentials where Email = @username limit 1";
                 string sql2 = "select * from user_credentials where Email = @username2 limit 1";
+
+
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
 
@@ -33,16 +37,10 @@ public partial class Login : System.Web.UI.Page
                 user.Value = userName.Trim();
                 cmd.Parameters.Add(user);
 
-                MySqlParameter pass = new MySqlParameter();
-                pass.ParameterName = "@password";
-                pass.Value = password.Trim();
-                cmd.Parameters.Add(pass);
-
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
 
                 if (count > 0)
                 {
-                    returnValue = true;
                     MySqlCommand cmd2 = new MySqlCommand(sql2, connection);
 
                     MySqlParameter user2 = new MySqlParameter();
@@ -51,20 +49,14 @@ public partial class Login : System.Web.UI.Page
                     cmd2.Parameters.Add(user2);
 
                     MySqlDataReader reader = cmd2.ExecuteReader();
-                   
-                    while(reader.Read())
+                    string hashedPass = "";
+                    while (reader.Read())
                     {
-                        string email_id = reader.GetString("Email");
-                        string user_id = reader.GetString("User_ID");
-                        Session["email"] = email_id;
-                        Session["user_name"] = user_id;
-
-                        System.Diagnostics.Debug.WriteLine(Session["email"]);
-                        System.Diagnostics.Debug.WriteLine(Session["user_name"]);
-                        System.Diagnostics.Debug.WriteLine(user_id);
+                        hashedPass = reader.GetString("acc_password");
                     }
-                
 
+                    if(Hashing.ValidatePassword(password,hashedPass))
+                        returnValue = true;          
                 }
             }
             catch (MySqlException ex)
@@ -104,6 +96,46 @@ public partial class Login : System.Web.UI.Page
                 Session["AuthToken"] = guid;
                 
                 Response.Cookies.Add(new HttpCookie("AuthToken", guid));
+
+                string sql2 = "select * from user_credentials where Email = @username2 limit 1";
+
+                try
+                {
+                    connection.Open();
+
+                    MySqlCommand cmd2 = new MySqlCommand(sql2, connection);
+
+                    MySqlParameter user2 = new MySqlParameter();
+                    user2.ParameterName = "@username2";
+                    user2.Value = uname.Trim();
+                    cmd2.Parameters.Add(user2);
+
+                    MySqlDataReader reader = cmd2.ExecuteReader();
+                    string email_id = "";
+                    string user_id = "";
+
+                    while (reader.Read())
+                    {
+                        email_id = reader.GetString("Email");
+                        user_id = reader.GetString("User_ID");
+                    }
+
+
+                    Response.Cookies.Add(new HttpCookie("email", email_id));
+                    Response.Cookies.Add(new HttpCookie("uid", user_id));
+
+                    System.Diagnostics.Debug.WriteLine(Request.Cookies["email"].Value);
+                    System.Diagnostics.Debug.WriteLine(Request.Cookies["uid"].Value);
+                   
+                }
+                catch(MySqlException ex)
+                {
+
+                }
+                finally
+                {
+                    if (connection != null) connection.Close();
+                }
 
                 Response.Redirect("GeneralDetails.aspx");
             }
