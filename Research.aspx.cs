@@ -28,7 +28,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                int user_id = 2000; // replace with session variable
+                int user_id = 400; // replace with session variable
                 string retrieve_command = "select * from application_status where User_ID = " + user_id.ToString();
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
@@ -1085,7 +1085,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @a1," +
                        "@hrs11, @hrs12, @hrs13)";
 
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@a1", row1);
         cmd.Parameters.AddWithValue("@hrs11", prev31);
         cmd.Parameters.AddWithValue("@hrs12", prev21);
@@ -1114,7 +1114,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @a2," +
                        "@hrs21, @hrs22, @hrs23)";
 
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@a2", row2);
         cmd.Parameters.AddWithValue("@hrs21", prev32);
         cmd.Parameters.AddWithValue("@hrs22", prev22);
@@ -1143,7 +1143,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @a3," +
                        "@hrs31, @hrs32, @hrs33)";
 
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@a3", row3);
         cmd.Parameters.AddWithValue("@hrs31", prev33);
         cmd.Parameters.AddWithValue("@hrs32", prev23);
@@ -1172,7 +1172,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @b1," +
                        "@hrs41, @hrs42, @hrs43)";
 
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@b1", row4);
         cmd.Parameters.AddWithValue("@hrs41", prev34);
         cmd.Parameters.AddWithValue("@hrs42", prev24);
@@ -1201,7 +1201,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @b2," +
                        "@hrs51, @hrs52, @hrs53)";
 
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@b2", row5);
         cmd.Parameters.AddWithValue("@hrs51", prev35);
         cmd.Parameters.AddWithValue("@hrs52", prev25);
@@ -1230,7 +1230,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @c1," +
                        "@hrs61, @hrs62, @hrs63)";
 
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@c1", row6);
         cmd.Parameters.AddWithValue("@hrs61", prev36);
         cmd.Parameters.AddWithValue("@hrs62", prev26);
@@ -1267,7 +1267,7 @@ public partial class Research : System.Web.UI.Page
                         "ImpactFactor,Year,VolumeNumber) values (@uid6, @phdPaperTitle, @phdJournalName, @phdAuthorStatus, @phdImpactFactor, " +
                         "@phdYear, @phdVolumeNo)";
 
-                    cmd.Parameters.AddWithValue("@uid6", 2000);
+                    cmd.Parameters.AddWithValue("@uid6", 400);
                     cmd.Parameters.AddWithValue("@phdPaperTitle", phdPaperTitle);
                     cmd.Parameters.AddWithValue("@phdJournalName", phdJournalName);
                     cmd.Parameters.AddWithValue("@phdAuthorStatus", phDauthorStatus);
@@ -1313,7 +1313,7 @@ public partial class Research : System.Web.UI.Page
                         "StatusAsAuthor,Year,Publisher) values (@uid7, @bPubType, @bPaperTitle, @bIsbnNo, @bAuthorStatus, " +
                         "@bPubYear, @bPubName)";
 
-                    cmd.Parameters.AddWithValue("@uid7", 2000);
+                    cmd.Parameters.AddWithValue("@uid7", 400);
                     cmd.Parameters.AddWithValue("@bPubType", bookPubType);
                     cmd.Parameters.AddWithValue("@bPaperTitle", bookPaperTitle);
                     cmd.Parameters.AddWithValue("@bIsbnNo", bookIsbnNo);
@@ -1358,7 +1358,7 @@ public partial class Research : System.Web.UI.Page
                         "Duration, SponsorsDetail) values (@uid8, @rProjectType, @rProjectTitle, @rProjectStatus, @rProjectPeriod, " +
                         "@rProjectSponsor)";
 
-                    cmd.Parameters.AddWithValue("@uid8", 2000);
+                    cmd.Parameters.AddWithValue("@uid8", 400);
                     cmd.Parameters.AddWithValue("@rProjectType", researchProjectType);
                     cmd.Parameters.AddWithValue("@rProjectTitle", researchProjectTitle);
                     cmd.Parameters.AddWithValue("@rProjectStatus", researchProjectStatus);
@@ -1388,7 +1388,7 @@ public partial class Research : System.Web.UI.Page
 
         cmd.CommandText = "INSERT INTO api_data_iii_d(User_ID, GuidanceTo, Number) values (@uid, @mPhilA, @resGuideMphil)";
 
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@mPhilA", DmphilA);
         cmd.Parameters.AddWithValue("@resGuideMphil", DmphilAN);
         try
@@ -1408,7 +1408,7 @@ public partial class Research : System.Web.UI.Page
         string DphdA = phdA.Text;
         string DphdAN = resGuidePhdAward.Text;
         cmd.CommandText = "INSERT INTO api_data_iii_d(User_ID, GuidanceTo, Number) values (@uid, @phdA, @resGuidePhdAward)";
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@phdA", DphdA);
         cmd.Parameters.AddWithValue("@resGuidePhdAward", DphdAN);
         try
@@ -1427,7 +1427,7 @@ public partial class Research : System.Web.UI.Page
         string DphdS = phdS.Text;
         string DphdSN = resGuidePhdSub.Text;
         cmd.CommandText = "INSERT INTO api_data_iii_d(User_ID, GuidanceTo, Number) values (@uid, @phdA, @resGuidePhdAward)";
-        cmd.Parameters.AddWithValue("@uid", 2000);
+        cmd.Parameters.AddWithValue("@uid", 400);
         cmd.Parameters.AddWithValue("@phdA", DphdS);
         cmd.Parameters.AddWithValue("@resGuidePhdAward", DphdSN);
         try
@@ -1463,7 +1463,7 @@ public partial class Research : System.Web.UI.Page
                         "ParticipationAs, SponsorsDetail, Duration) values (@uid9, @fType, @fTitle, @fLevel, @fPart, " +
                         "@fSponsor, @fPeriod)";
 
-                    cmd.Parameters.AddWithValue("@uid9", 2000);
+                    cmd.Parameters.AddWithValue("@uid9", 400);
                     cmd.Parameters.AddWithValue("@fType", fellowshipType);
                     cmd.Parameters.AddWithValue("@fTitle", fellowshipTitle);
                     cmd.Parameters.AddWithValue("@fLevel", fellowshipLevel);
@@ -1509,7 +1509,7 @@ public partial class Research : System.Web.UI.Page
                         "StatusAsAuthor, Duration) values (@uid10, @eTitle, @eDetailAgency, @eModule, @eStatus, " +
                         "@ePeriod)";
 
-                    cmd.Parameters.AddWithValue("@uid10", 2000);
+                    cmd.Parameters.AddWithValue("@uid10", 400);
                     cmd.Parameters.AddWithValue("@eTitle", eLearnTitle);
                     cmd.Parameters.AddWithValue("@eDetailAgency", eLearnDetailAgency);
                     cmd.Parameters.AddWithValue("@eModule", eLearnModule);
@@ -1536,7 +1536,7 @@ public partial class Research : System.Web.UI.Page
 
         if (section1 && section2 && section3 && section4 && section5 && section6 && section7)
         {
-            int user_id = 2000; 
+            int user_id = 400; 
             string insert_com = "update application_status set Research = 1 where User_ID = " + user_id.ToString();
             using (MySqlCommand update_details = new MySqlCommand(insert_com, connection))
             {
@@ -1571,7 +1571,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select Activity, PreviousThird, PreviousSecond, PreviousOne from api_data_ii where User_ID = " + 2000;
+                string retrieve_command = "Select Activity, PreviousThird, PreviousSecond, PreviousOne from api_data_ii where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1654,7 +1654,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select TitleOfPaper, JournalName, StatusAsAuthor, ImpactFactor, Year, VolumeNumber from api_data_iii_a where User_ID = " + 2000;
+                string retrieve_command = "Select TitleOfPaper, JournalName, StatusAsAuthor, ImpactFactor, Year, VolumeNumber from api_data_iii_a where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1682,7 +1682,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select PublicationType, Title, ISBN_No, StatusAsAuthor, Year, Publisher from api_data_iii_b where User_ID = " + 2000;
+                string retrieve_command = "Select PublicationType, Title, ISBN_No, StatusAsAuthor, Year, Publisher from api_data_iii_b where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1710,7 +1710,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select GuidanceTo, Number from api_data_iii_d where User_ID = " + 2000;
+                string retrieve_command = "Select GuidanceTo, Number from api_data_iii_d where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1750,7 +1750,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select ProjectType, Title, ParticipationAs, Duration, SponsorsDetail from api_data_iii_c where User_ID = " + 2000;
+                string retrieve_command = "Select ProjectType, Title, ParticipationAs, Duration, SponsorsDetail from api_data_iii_c where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1779,7 +1779,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select Type, Title, Level, ParticipationAs, SponsorsDetail,Duration from api_data_iii_e where User_ID = " + 2000;
+                string retrieve_command = "Select Type, Title, Level, ParticipationAs, SponsorsDetail,Duration from api_data_iii_e where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1806,7 +1806,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select TitleOfModule, AgencyDetail, ForWhom, StatusAsAuthor, Duration from api_data_iii_f where User_ID = " + 2000;
+                string retrieve_command = "Select TitleOfModule, AgencyDetail, ForWhom, StatusAsAuthor, Duration from api_data_iii_f where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {

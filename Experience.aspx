@@ -13,7 +13,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form role="form" id="experienceDetails" runat="server">
         <div class="card">
-            <div class="card-header">
+            <div class="card-header" data-background-color="blue">
                 Full Time Teaching-Experience
             </div>
 			<div class ="card-content text-justify" runat ="server" id ="experience">
