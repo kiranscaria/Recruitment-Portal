@@ -1,0 +1,12 @@
+﻿/* Main Navbar */
+.navbar-custom {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/* Solves the double scrollbar problem */
+html {
+    overflow-y: hidden
+}

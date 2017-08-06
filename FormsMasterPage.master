@@ -1,0 +1,174 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="FormsMasterPage.master.cs" Inherits="FormsMasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+	<link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<title>Recruitment Portal</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!--  Material Dashboard CSS    -->
+    <link href="assets/css/material-dashboard.css" rel="stylesheet"/>
+
+    <!-- Custom Style File -->
+    <link href="assets/css/styles.css" rel="stylesheet"/>
+
+    <!--     Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+    
+    <!--   Core JS Files   -->
+	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="assets/js/material.min.js" type="text/javascript"></script>
+
+	<!-- Material Dashboard javascript methods -->
+	<script src="assets/js/material-dashboard.js"></script>
+
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+
+<body>
+    <div class="wrapper">
+	    <div class="sidebar" data-color="red" data-image="assets/img/sidebar-1.jpg">
+			<!--
+		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+		        Tip 2: you can also add an image using data-image tag
+		    -->
+
+            <div class="logo">
+				<a href="default.aspx" class="simple-text">
+					Recruitment Portal
+				</a>
+			</div>
+			
+	    	<div class="sidebar-wrapper">
+	            <ul class="nav">
+	                <li id="GeneralDetails">
+	                    <a href="GeneralDetails.aspx">
+	                        <i class="material-icons">contacts</i>
+	                        <p>General Details</p>
+	                    </a>
+	                </li>
+	                <li id="AcademicDetails">
+	                    <a href="AcademicDetails.aspx">
+	                        <i class="material-icons">school</i>
+	                        <p>Academic Details</p>
+	                    </a>
+	                </li>
+	                <li id="Experience">
+	                    <a href="Experience.aspx">
+	                        <i class="material-icons">content_paste</i>
+	                        <p>Experience</p>
+	                    </a>
+	                </li>
+	                <li id="Research">
+	                    <a href="Research.aspx">
+	                        <i class="material-icons">bubble_chart</i>
+	                        <p>Research</p>
+	                    </a>
+	                </li>
+	                <li id="OtherDetails">
+	                    <a href="OtherDetails.aspx">
+	                        <i class="material-icons">location_on</i>
+	                        <p>Other Details</p>
+	                    </a>
+	                </li>
+	                <li id="Declaration">
+	                    <a href="Declaration.aspx">
+	                        <i class="material-icons">subject</i>
+	                        <p>Declaration</p>
+	                    </a>
+	                </li>
+                    <li id="Preview">
+	                    <a href="Preview.aspx">
+	                        <i class="material-icons text-gray">receipt</i>
+	                        <p>Preview</p>
+	                    </a>
+	                </li>
+                    <li id="Uploads">
+	                    <a href="Uploads.aspx">
+	                        <i class="material-icons text-gray">file_upload</i>
+	                        <p>Uploads</p>
+	                    </a>
+	                </li>                    
+                    <li id="Payment">
+	                    <a href="Payment.aspx">
+	                        <i class="material-icons text-gray">payment</i>
+	                        <p>Payment</p>
+	                    </a>
+	                </li>
+	            </ul>
+	    	</div>
+	    </div>
+
+	    <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute navbar-custom">
+				<div class="container-fluid navbar-custom">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="http://www.curaj.ac.in">Home</a>
+							</li>
+                            <li>
+                                <a href="#">Help</a>
+							</li>
+                      
+							<li>
+                                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">
+                                    <i class="material-icons">power_settings_new</i>Logout
+                                </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+			<div class="content">
+				<div class="container-fluid">
+					<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+                    </asp:ContentPlaceHolder>
+				</div>
+			</div>
+
+			<footer class="footer">
+				<div class="container-fluid">
+                    <p class="muted credit"><i class="fa fa-copyright" aria-hidden="true"></i> <a href="http://www.curaj.ac.in"> Central University of Rajasthan</a> 2017.</p>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+    <div class="modal bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header"><h4>Logout <i class="fa fa-lock"></i></h4></div>
+            <div class="modal-body"><i class="fa fa-question-circle"></i> Are you sure you want to log-off?</div>
+            <div class="modal-footer"><a href="Logout.aspx" class="btn btn-primary btn-block">Logout</a></div>
+        </div>
+        </div>
+    </div>
+
+</body>
+</html>
