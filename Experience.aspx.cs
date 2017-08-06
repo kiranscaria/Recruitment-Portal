@@ -25,7 +25,7 @@ public partial class Experience : System.Web.UI.Page
             {
                 connection.Open();
 
-                int user_id = 2000; // replace with session variable
+                int user_id = 400; // replace with session variable
                 string retrieve_command = "select * from application_status where User_ID = " + user_id.ToString();
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
@@ -317,7 +317,7 @@ public partial class Experience : System.Web.UI.Page
                     cmd.CommandText = "INSERT INTO experience_table() values (@uid,@employer,@designation," +
                                       "@status,@salary,STR_TO_DATE(@from,'%Y-%m-%d'),STR_TO_DATE(@to,'%Y-%m-%d'),@exptype,timestampdiff(MONTH,@from,@to))";
 
-                    cmd.Parameters.AddWithValue("@uid", 2000);
+                    cmd.Parameters.AddWithValue("@uid", 400);
                     cmd.Parameters.AddWithValue("@employer", expTeachingUniversityName);
                     cmd.Parameters.AddWithValue("@designation", expteachingDesignation);
                     cmd.Parameters.AddWithValue("@status", expteachingStatus);
@@ -349,7 +349,7 @@ public partial class Experience : System.Web.UI.Page
         }
         if (submit_success)
         {
-            int user_id = 2000;
+            int user_id = 400;
             string insert_com = "update application_status set Experience = 1 where User_ID = " + user_id.ToString();
             using (MySqlCommand update_details = new MySqlCommand(insert_com, connection))
             {
@@ -382,7 +382,7 @@ public partial class Experience : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select Employer, Designation, Status, BasicPay, expFrom, expTo, Duration from experience_table where User_ID = " + 2000;
+                string retrieve_command = "Select Employer, Designation, Status, BasicPay, expFrom, expTo, Duration from experience_table where User_ID = " + 400;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {

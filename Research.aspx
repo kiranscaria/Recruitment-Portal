@@ -66,9 +66,9 @@
                             <asp:TextBox ID="hrs13" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
-                        <asp:Label runat="server" ID="apiScoreCat1"></asp:Label>
-                    </div> --%>
+                 <!--    <div class="col-lg-1 text-center">
+                        <asp:Label runat="server" ID="apiScoreCat11"></asp:Label>  
+                    </div> -->
                 </div><hr class="line" />
 
                 <div class="row">
@@ -90,9 +90,9 @@
                             <asp:TextBox ID="hrs23" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
-                        <asp:Label runat="server" ID="apiScoreCat2"></asp:Label>
-                    </div> --%>
+                   <!-- <div class="col-lg-1 text-center">
+                        <asp:Label runat="server" ID="apiScoreCat12"></asp:Label> 
+                    </div> -->
                 </div><hr class="line" />
 
                 <div class="row">
@@ -114,9 +114,9 @@
                             <asp:TextBox ID="hrs33" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
-                        <asp:Label runat="server" ID="apiScoreCat3"></asp:Label>
-                    </div> --%>
+                  <!--  <div class="col-lg-1 text-center">
+                        <asp:Label runat="server" ID="apiScoreCat13"></asp:Label>
+                    </div> -->
                 </div><hr class="line" />
 
                 <div class="row">
@@ -150,9 +150,9 @@
                             <asp:TextBox ID="hrs43" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
-                        <asp:Label runat="server" ID="apiScoreCat4"></asp:Label>
-                    </div> --%>
+                  <!--  <div class="col-lg-1 text-center">
+                        <asp:Label runat="server" ID="apiScoreCat14"></asp:Label>
+                    </div> -->
                 </div><hr class="line" />
 
                 <div class="row">
@@ -174,9 +174,9 @@
                             <asp:TextBox ID="hrs53" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
-                        <asp:Label runat="server" ID="apiScoreCat5"></asp:Label>
-                    </div> --%>
+                  <!--  <div class="col-lg-1 text-center">
+                        <asp:Label runat="server" ID="apiScoreCat15"></asp:Label>
+                    </div> -->
                 </div><hr class="line" />
 
                 <div class="row">
@@ -210,9 +210,9 @@
                             <asp:TextBox ID="hrs63" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
-                        <asp:Label runat="server" ID="apiScoreCat6"></asp:Label>
-                    </div> --%>
+                  <!--  <div class="col-lg-1 text-center">
+                        <asp:Label runat="server" ID="apiScoreCat16"></asp:Label>
+                    </div> -->
                 </div><hr class="line" />  
             </div> <!--Panel Body ends -->
 
@@ -238,9 +238,9 @@
                             <asp:Label runat="server">2015-16</asp:Label>
                         </div>
                     </div>
-                   <%-- <div class="col-lg-1 text-center">
+                    <div class="col-lg-1 text-center">
                         <label>API Score</label>
-                    </div> --%>
+                    </div> 
                 </div><hr class="line" />
 
                 <div class="row">
@@ -272,9 +272,9 @@
                             <asp:TextBox ID="coaRow1co13" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
+                     <div class="col-lg-1 text-center">
                         <asp:Label runat="server" ID="apiScoreCat1"></asp:Label>
-                    </div> --%>
+                    </div> 
                 </div><hr class="line" />
 
                 <div class="row">
@@ -296,9 +296,9 @@
                             <asp:TextBox ID="coaRow2co13" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
+                    <div class="col-lg-1 text-center">
                         <asp:Label runat="server" ID="apiScoreCat2"></asp:Label>
-                    </div> --%>
+                    </div>
                 </div><hr class="line" />
 
                 <div class="row">
@@ -320,9 +320,9 @@
                             <asp:TextBox ID="coaRow3co13" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
+                    <div class="col-lg-1 text-center">
                         <asp:Label runat="server" ID="apiScoreCat3"></asp:Label>
-                    </div> --%>
+                    </div> 
                 </div><hr class="line" />
 
                 <div class="row">
@@ -356,9 +356,9 @@
                             <asp:TextBox ID="coaRow4co13" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
+                    <div class="col-lg-1 text-center">
                         <asp:Label runat="server" ID="apiScoreCat4"></asp:Label>
-                    </div> --%>
+                    </div> 
                 </div><hr class="line" />
 
                 <div class="row">
@@ -380,9 +380,9 @@
                             <asp:TextBox ID="coaRow5co13" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
+                    <div class="col-lg-1 text-center">
                         <asp:Label runat="server" ID="apiScoreCat5"></asp:Label>
-                    </div> --%>
+                    </div> 
                 </div><hr class="line" />
 
                 <div class="row">
@@ -416,9 +416,9 @@
                             <asp:TextBox ID="coaRow6co13" CssClass="form-control" runat="server"></asp:TextBox>
                         </div>
                     </div>
-                    <%-- <div class="col-lg-1 text-center">
+                    <div class="col-lg-1 text-center">
                         <asp:Label runat="server" ID="apiScoreCat6"></asp:Label>
-                    </div> --%>
+                    </div> 
                 </div><hr class="line" />  
             </div> <!-- Preview assesment Panel Ends -->
 
@@ -465,9 +465,9 @@
                                         </ItemTemplate>
                                     </asp:TemplateField>
 
-                                    <asp:TemplateField HeaderText="Impact Factor">
+                                    <asp:TemplateField HeaderText="Impact Factor" runat="server">
                                         <ItemTemplate>
-                                            <asp:DropDownList runat="server"  class="form-control" ID="phdImpactFactor">
+                                            <asp:DropDownList  class="form-control" ID="phdImpactFactor" runat="server" >
                                                 <asp:ListItem Value="0">Select</asp:ListItem>
                                                 <asp:ListItem Value="1">10 or above</asp:ListItem>
                                                 <asp:ListItem Value="2">Between 5 to 10</asp:ListItem>
@@ -590,11 +590,11 @@
                                         </FooterTemplate>
                                     </asp:TemplateField>
 
-                                    <%-- <asp:TemplateField HeaderText="API Score">
+                                    <asp:TemplateField HeaderText="API Score">
                                         <ItemTemplate>
                                             <asp:Label ID="phdApiScore" runat="server"></asp:Label>
                                         </ItemTemplate>
-                                    </asp:TemplateField> --%>
+                                    </asp:TemplateField> 
                                     <asp:CommandField ShowDeleteButton="True" />
                                     </Columns>
                                 </asp:GridView>
@@ -605,6 +605,7 @@
             </div>   <!-- Panel Body Ends -->
 
          <div class ="card-content" runat ="server" id ="researchPapersPreview" visible ="false">
+             <asp:Label ID="phdApiScore" runat="server"></asp:Label>
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchPapersGrid" runat="server"></asp:GridView>
         </div>
 
@@ -790,6 +791,7 @@
             </div>   <!-- Panel Body Ends -->
 
                 <div class ="card-content" runat ="server" id ="publicationPreview" visible ="false">
+                    <asp:Label ID="bookApiScore" runat="server"></asp:Label>
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="publicationGrid" runat="server"></asp:GridView>
         </div>
 
@@ -814,7 +816,7 @@
                                     <asp:TemplateField HeaderText="Project Type">
                                         <ItemTemplate>
                                             <asp:DropDownList runat="server"  class="form-control" ID="researchProjectType">
-                                                <asp:ListItem value="">Select</asp:ListItem>
+                                                <asp:ListItem value="0">Select</asp:ListItem>
                                                 <asp:ListItem Value="1">Sponsored Projects: Grants above RS. 5 Lakhs for Non-Science Disciplines</asp:ListItem>
                                                 <asp:ListItem Value="2">Sponsored Projects: Grants above RS. 30 Lakhs for Science Disciplines</asp:ListItem>
                                                 <asp:ListItem Value="3">Sponsored Projects: Grant RS. 3-5 Lakhs for Non-Science Disciplines</asp:ListItem>
@@ -881,6 +883,7 @@
             </div>   <!-- Panel Body Ends -->
 
        <div class ="card-content" runat ="server" id ="researchProjectPreview" visible ="false">
+           <asp:Label runat="server" ID="projectApiScore"></asp:Label>
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchProjectGrid" runat="server"></asp:GridView>
         </div>
         </div>   <!-- Panel Ends -->
@@ -959,9 +962,9 @@
                     <div class="form-group col-md-4">
                         <label>Number of Students</label>
                     </div>
-                    <!--<div class="form-group col-lg-3">
-                        <label>API Score</label>
-                    </div> -->
+                    <div class="form-group col-lg-3">
+                        <asp:label ID="researchGuidanceApi" runat="server">Total API : </asp:label>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -1092,6 +1095,7 @@
             </div>   <!-- Panel Body Ends -->
 
          <div class ="card-content" runat ="server" id ="fellowshipPreview" visible ="false">
+             <asp:Label ID="fellowshipApiScore" runat="server"></asp:label>
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="fellowshipGrid" runat="server"></asp:GridView>
         </div>
    </div>   <!-- Panel Ends -->
@@ -1173,6 +1177,7 @@
         </div>   <!-- Panel Ends -->
      
          <div class ="card-content" runat ="server" id ="econtentPreview" visible ="false">
+             <asp:Label ID="elearnApiScore" runat="server"></asp:Label>
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="econtentGrid" runat="server"></asp:GridView>
         </div>
 </div>
