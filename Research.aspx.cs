@@ -142,8 +142,10 @@ public partial class Research : System.Web.UI.Page
         Page.Form.DefaultFocus = btnAdd.ClientID;
 
     }
+
     private void AddNewRowPhdResearch()
     {
+        
         int rowIndex = 0;
 
         if (ViewState["CurrentPhdResearchTable"] != null)
@@ -190,6 +192,7 @@ public partial class Research : System.Web.UI.Page
         }
         SetPreviousDataPhdResearch();
     }
+
     private void SetPreviousDataPhdResearch()
     {
         int rowIndex = 0;
@@ -222,10 +225,12 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     protected void ButtonAddphdResearch_Click(object sender, EventArgs e)
     {
         AddNewRowPhdResearch();
     }
+
     protected void gridResearchPhd_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SetRowDataPhdResearch();
@@ -250,6 +255,7 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     private void SetRowDataPhdResearch()
     {
         checkerCatPhdResearch = false;
@@ -295,7 +301,6 @@ public partial class Research : System.Web.UI.Page
         //SetPreviousDataTeach();
     }
 
-
     private void FirstGridViewBookResearchRow()
     {
         DataTable book_dt = new DataTable();
@@ -332,6 +337,7 @@ public partial class Research : System.Web.UI.Page
         Page.Form.DefaultFocus = btnAdd.ClientID;
 
     }
+
     private void AddNewRowBookResearch()
     {
         int rowIndex = 0;
@@ -381,6 +387,7 @@ public partial class Research : System.Web.UI.Page
         }
         SetPreviousDataBookResearch();
     }
+
     private void SetPreviousDataBookResearch()
     {
         int rowIndex = 0;
@@ -413,10 +420,12 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     protected void ButtonAddbookResearch_Click(object sender, EventArgs e)
     {
         AddNewRowBookResearch();
     }
+
     protected void gridResearchBook_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SetRowDataBookResearch();
@@ -441,6 +450,7 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     private void SetRowDataBookResearch()
     {
         checkerCatBookResearchRow = false;
@@ -486,7 +496,6 @@ public partial class Research : System.Web.UI.Page
         //SetPreviousDataTeach();
     }
     
-
     private void FirstGridViewResearchProjectRow()
     {
         DataTable project_dt = new DataTable();
@@ -521,6 +530,7 @@ public partial class Research : System.Web.UI.Page
         Page.Form.DefaultFocus = btnAdd.ClientID;
 
     }
+
     private void AddNewRowResearchProject()
     {
         int rowIndex = 0;
@@ -567,6 +577,7 @@ public partial class Research : System.Web.UI.Page
         }
         SetPreviousDataResearchProject();
     }
+
     private void SetPreviousDataResearchProject()
     {
         int rowIndex = 0;
@@ -597,10 +608,12 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     protected void ButtonAddResearchProject_Click(object sender, EventArgs e)
     {
         AddNewRowResearchProject();
     }
+
     protected void gridResearchProject_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SetRowDataResearchProject();
@@ -625,6 +638,7 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     private void SetRowDataResearchProject()
     {
         checkerCatResearchProject = false;
@@ -668,7 +682,6 @@ public partial class Research : System.Web.UI.Page
         //SetPreviousDataTeach();
     }
 
-
     private void FirstGridViewFellowshipRow()
     {
         DataTable project_dt = new DataTable();
@@ -705,6 +718,7 @@ public partial class Research : System.Web.UI.Page
         Page.Form.DefaultFocus = btnAdd.ClientID;
 
     }
+
     private void AddNewRowFellowship()
     {
         int rowIndex = 0;
@@ -753,6 +767,7 @@ public partial class Research : System.Web.UI.Page
         }
         SetPreviousDataFellowship();
     }
+
     private void SetPreviousDataFellowship()
     {
         int rowIndex = 0;
@@ -785,10 +800,12 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     protected void ButtonAddFellowship_Click(object sender, EventArgs e)
     {
         AddNewRowFellowship();
     }
+
     protected void gridFellowship_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SetRowDataFellowship();
@@ -813,6 +830,7 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     private void SetRowDataFellowship()
     {
         checkerCatFellowship = false;
@@ -858,7 +876,6 @@ public partial class Research : System.Web.UI.Page
         //SetPreviousDataTeach();
     }
 
-
     private void FirstGridViewElearnRow()
     {
         DataTable project_dt = new DataTable();
@@ -893,6 +910,7 @@ public partial class Research : System.Web.UI.Page
         Page.Form.DefaultFocus = btnAdd.ClientID;
 
     }
+
     private void AddNewRowElearn()
     {
         int rowIndex = 0;
@@ -939,6 +957,7 @@ public partial class Research : System.Web.UI.Page
         }
         SetPreviousDataElearn();
     }
+
     private void SetPreviousDataElearn()
     {
         int rowIndex = 0;
@@ -969,10 +988,12 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     protected void ButtonAddElearn_Click(object sender, EventArgs e)
     {
         AddNewRowElearn();
     }
+
     protected void gridElearn_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
         SetRowDataElearn();
@@ -997,6 +1018,7 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     private void SetRowDataElearn()
     {
         checkerCatElearn = false;
@@ -1039,8 +1061,7 @@ public partial class Research : System.Web.UI.Page
         }
         //SetPreviousDataTeach();
     }
-
-
+    
     protected void saveResearch_Click(object sender, EventArgs e)
     {
         bool section1 = false;
@@ -1062,7 +1083,7 @@ public partial class Research : System.Web.UI.Page
         if (checkerCatElearn)
             SetRowDataElearn();
 
-
+        api_calculator();
 
         MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True");
 
@@ -1646,6 +1667,7 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
+
     protected void research_papers_preview()
     {
         if (!this.IsPostBack)
@@ -1740,8 +1762,7 @@ public partial class Research : System.Web.UI.Page
             }
         }
     }
-
-
+    
     protected void research_project_preview()
     {
         if (!this.IsPostBack)
@@ -1770,7 +1791,6 @@ public partial class Research : System.Web.UI.Page
 
     }
 
-
     protected void fellowship_preview()
     {
         if (!this.IsPostBack)
@@ -1798,6 +1818,7 @@ public partial class Research : System.Web.UI.Page
         }
 
     }
+
     protected void econtent_preview()
     {
         if (!this.IsPostBack)
@@ -1829,5 +1850,228 @@ public partial class Research : System.Web.UI.Page
     protected void proceed_Click(object sender, EventArgs e)
     {
         Response.Redirect("OtherDetails.aspx");
+    }
+
+    protected void api_calculator()
+    {
+        // api calculation for category 2
+        apiScoreCat1.Text = api_two_calculator(hrs11.Text, hrs12.Text, hrs13.Text).ToString();
+        apiScoreCat2.Text = api_two_calculator(hrs21.Text, hrs22.Text, hrs23.Text).ToString();
+        apiScoreCat3.Text = api_two_calculator(hrs31.Text, hrs32.Text, hrs33.Text).ToString();
+        apiScoreCat4.Text = api_two_calculator(hrs41.Text, hrs42.Text, hrs43.Text).ToString();
+        apiScoreCat5.Text = api_two_calculator(hrs51.Text, hrs52.Text, hrs53.Text).ToString();
+        apiScoreCat6.Text = api_two_calculator(hrs61.Text, hrs62.Text, hrs63.Text).ToString();
+
+        // api calculation for category 3 part a
+        DataTable dtCurrentPhdResearchTable = (DataTable)ViewState["CurrentPhdResearchTable"];
+
+        double score_1 = 0, score_2 = 0, score_3 = 0, score_4 = 0, score_5 = 0, score_6 = 0, score_7 = 0;
+
+        for (int i = 0; i < dtCurrentPhdResearchTable.Rows.Count; i++)
+        {
+            DropDownList phdImpactFactor = (DropDownList)gridResearchPhd.Rows[i].Cells[4].FindControl("phdImpactFactor");
+            int impact_factor = int.Parse(phdImpactFactor.SelectedValue);
+            DropDownList phDauthorStatus = (DropDownList)gridResearchPhd.Rows[i].Cells[3].FindControl("phDauthorStatus");
+            int author = int.Parse(phDauthorStatus.SelectedValue);
+
+            switch (impact_factor)
+            {
+                case 1:
+                    if (author == 1)
+                        score_1 += 40;
+                    if (author == 2)
+                        score_1 += 28;
+                    if (author == 3)
+                        score_1 += 12;
+                    break;
+                case 2:
+                    if (author == 1)
+                        score_2 += 35;
+                    if (author == 2)
+                        score_2 += 24.5;
+                    if (author == 3)
+                        score_2 += 10.5;
+                    break;
+                case 3:
+                    if (author == 1)
+                        score_3 += 30;
+                    if (author == 2)
+                        score_3 += 21;
+                    if (author == 3)
+                        score_3 += 9;
+                    break;
+                case 4:
+                    if (author == 1)
+                        score_4 += 25;
+                    if (author == 2)
+                        score_4 += 17.5;
+                    if (author == 3)
+                        score_4 += 7.5;
+                    break;
+                case 5:
+                    if (author == 1)
+                        score_5 += 20;
+                    if (author == 2)
+                        score_5 += 14;
+                    if (author == 3)
+                        score_5 += 6;
+                    break;
+                case 6:
+                    if (author == 1)
+                        score_6 += 15;
+                    if (author == 2)
+                        score_6 += 10.5;
+                    if (author == 3)
+                        score_6 += 4.5;
+                    break;
+                case 7:
+                    if (author == 1)
+                        score_7 += 10;
+                    if (author == 2)
+                        score_7 += 7;
+                    if (author == 3)
+                        score_7 += 3;
+                    break;
+            }
+            phdApiScore.Text = (score_1 + score_2 + score_3 + score_4 + score_5 + score_6 + score_7).ToString();
+
+        }
+
+        // api calculation for category 3 part b
+        DataTable dtCurrentBookResearchTable = (DataTable)ViewState["CurrentBookResearchTable"];
+
+        double score_11 = 0, score_12 = 0, score_13 = 0, score_14 = 0, score_15=0;
+
+        for (int i = 0; i < dtCurrentBookResearchTable.Rows.Count; i++)
+        {
+            DropDownList bookPubType = (DropDownList)gridResearchBook.Rows[i].Cells[4].FindControl("bookPubType");
+            int book_type = int.Parse(bookPubType.SelectedValue);
+            DropDownList bookAuthorStatus = (DropDownList)gridResearchBook.Rows[i].Cells[3].FindControl("bookAuthorStatus");
+            int author = int.Parse(bookAuthorStatus.SelectedValue);
+
+            switch (book_type)
+            {
+                case 1:
+                    if (author == 1)
+                        score_11 += 30;
+                    if (author == 2)
+                        score_11 += 21;
+                    if (author == 3)
+                        score_11 += 9;
+                    break;
+                case 2:
+                    if (author == 1)
+                        score_12 += 20;
+                    if (author == 2)
+                        score_12 += 14;
+                    if (author == 3)
+                        score_12 += 6;
+                    break;
+                case 3:
+                    if (author == 1)
+                        score_13 += 15;
+                    if (author == 2)
+                        score_13 += 10.5;
+                    if (author == 3)
+                        score_13 += 4.5;
+                    break;
+                case 4:
+                    if (author == 1)
+                        score_14 += 10;
+                    if (author == 2)
+                        score_14 += 7;
+                    if (author == 3)
+                        score_14 += 3;
+                    break;
+                case 5:
+                    if (author == 1)
+                        score_15 += 5;
+                    if (author == 2)
+                        score_15 += 3.5;
+                    if (author == 3)
+                        score_15 += 1.5;
+                    break;
+            }
+        }
+        bookApiScore.Text = (score_11 + score_12 + score_13 + score_14 + score_15).ToString();
+
+        // api calculation for category 3 part c
+        DataTable dtCurrentResearchProjectTable = (DataTable)ViewState["CurrentResearchProjectTable"];
+
+        double score_21 = 0, score_22 = 0, score_23 = 0, score_24 = 0, score_25 = 0, score_26 = 0;
+
+        for (int i = 0; i < dtCurrentResearchProjectTable.Rows.Count; i++)
+        {
+            DropDownList researchProjectType = (DropDownList)gridResearchProject.Rows[i].Cells[4].FindControl("researchProjectType");
+            int project_type = int.Parse(researchProjectType.SelectedValue);
+
+            if ((project_type == 1) || (project_type == 2))
+                score_21 += 20;
+            if ((project_type == 3) || (project_type == 4))
+                score_22 += 15;
+            if ((project_type == 5) || (project_type == 6))
+                score_23 += 10;
+            if ((project_type == 7) || (project_type == 8))
+                score_24 += 10;
+            if ((project_type == 9) || (project_type == 11))
+                score_25 += 30;
+            if ((project_type == 10) || (project_type == 12))
+                score_26 += 20;
+        }
+        projectApiScore.Text = (score_21 + score_22 + score_23 + score_24 + score_25 + score_26).ToString();
+
+        // api calculation for category 3 part d
+        int guidance_api = (int.Parse(resGuideMphil.Text) * 5) + (int.Parse(resGuidePhdAward.Text) * 15) + (int.Parse(resGuidePhdSub.Text) * 10);
+        researchGuidanceApi.Text = researchGuidanceApi.Text + guidance_api.ToString();
+
+        // api calculation for category 3 part e
+        DataTable dtCurrentFellowshipTable = (DataTable)ViewState["CurrentFellowshipTable"];
+
+        double score_31 = 0, score_32 = 0;
+
+        for (int i = 0; i < dtCurrentFellowshipTable.Rows.Count; i++)
+        {
+            DropDownList fellowshipType = (DropDownList)gridFellowship.Rows[i].Cells[4].FindControl("fellowshipType");
+            int fellowship_type = int.Parse(fellowshipType.SelectedValue);
+            DropDownList fellowshipLevel = (DropDownList)gridFellowship.Rows[i].Cells[3].FindControl("fellowshipLevel");
+            int fellowship_level = int.Parse(fellowshipLevel.SelectedValue);
+
+            switch (fellowship_type)
+            {
+                case 1:
+                    if (fellowship_level == 1)
+                        score_31 += 15;
+                    if (fellowship_level == 2)
+                        score_31 += 10;
+                    if (fellowship_level == 3)
+                        score_31 += 5;
+                    break;
+                case 2:
+                    if (fellowship_level == 1)
+                        score_32 += 7;
+                    if (fellowship_level == 2)
+                        score_32 += 5;
+                    if (fellowship_level == 3)
+                        score_32 += 3;
+                    break;
+            }
+            fellowshipApiScore.Text = (score_31 + score_32).ToString();
+
+        }
+
+        // api calculation for category 3 part f
+        DataTable dtCurrentElearnTable = (DataTable)ViewState["CurrentElearnTable"];
+        elearnApiScore.Text = (dtCurrentElearnTable.Rows.Count * 10).ToString();
+
+    }
+
+    private float api_two_calculator(string one, string two, string three)
+    {
+        float result = (int.Parse(one) + int.Parse(two) + int.Parse(three)) / 10;
+
+        if (result >= 15)
+            return 15;
+        else
+            return result;
     }
 }
