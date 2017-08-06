@@ -8,10 +8,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <form role="form" id="research" runat="server">
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">Assessment of last three academic years</div>
-            <div class="panel-body" runat="server" id ="assesment">
-                <div class="row">
+        <div class="card">
+            <div class="card-header" data-background-color="orange">
+                Assessment of last three academic years
+            </div>
+            <div class="card-content table-responsive" runat="server" id ="assesment">
+                <div class="row ">
                     <div class="col-md-1 text-center">
                         <label>Sr.No.</label>
                     </div>
@@ -216,7 +218,7 @@
 
             <!-- Preview assesment panel start -->
 
-           <div class="panel-body" runat="server" id ="assesmentPreview" visible ="false">
+           <div class="card-content" runat="server" id ="assesmentPreview" visible ="false">
                 <div class="row">
                     <div class="col-md-1 text-center">
                         <label>Sr.No.</label>
@@ -423,11 +425,11 @@
 
         </div>   <!-- Panel Ends -->
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
+        <div class="card">
+            <div class="card-header" data-background-color="blue">
                 Research Papers Published in Journals
             </div>
-			<div class ="panel-body" runat ="server" id ="researchPapers">
+			<div class ="card-content" runat ="server" id ="researchPapers">
                 <div class="shadow-box">
                     <div class="row">  
                         <div class="col-md-12 ">  
@@ -602,18 +604,18 @@
                 </div>
             </div>   <!-- Panel Body Ends -->
 
-         <div class ="panel-body" runat ="server" id ="researchPapersPreview" visible ="false">
+         <div class ="card-content" runat ="server" id ="researchPapersPreview" visible ="false">
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchPapersGrid" runat="server"></asp:GridView>
         </div>
 
         </div>   <!-- Panel Ends -->
 
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
+        <div class="card">
+            <div class="card-header" data-background-color="orange">
                 Research Publications: Books/Chapter in Books
             </div>
-			<div class ="panel-body" runat ="server" id ="publications">
+			<div class ="card-content" runat ="server" id ="publications">
                 <strong>Please leave this table blank if you don't any publications. <br /></strong><br />
                 <div class="shadow-box">
                     <div class="row">  
@@ -787,17 +789,17 @@
                 </div>
             </div>   <!-- Panel Body Ends -->
 
-                <div class ="panel-body" runat ="server" id ="publicationPreview" visible ="false">
+                <div class ="card-content" runat ="server" id ="publicationPreview" visible ="false">
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="publicationGrid" runat="server"></asp:GridView>
         </div>
 
         </div>   <!-- Panel Ends -->
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
+        <div class="card">
+            <div class="card-header" data-background-color="purple">
                 Research Projects
             </div>
-			<div class ="panel-body" runat="server" id="researchProjects">
+			<div class ="card-content" runat="server" id="researchProjects">
                 <strong>Please leave this table blank if you don't any Research Projects. <br /></strong><br />
                 <div class="shadow-box">
                     <div class="row">  
@@ -878,14 +880,14 @@
                 </div>
             </div>   <!-- Panel Body Ends -->
 
-       <div class ="panel-body" runat ="server" id ="researchProjectPreview" visible ="false">
+       <div class ="card-content" runat ="server" id ="researchProjectPreview" visible ="false">
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchProjectGrid" runat="server"></asp:GridView>
         </div>
         </div>   <!-- Panel Ends -->
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">Research Guidance</div>
-            <div class="panel-body" runat="server" id="researchGuidance">
+        <div class="card">
+            <div class="card-header" data-background-color="red">Research Guidance</div>
+            <div class="card-content table-responsive" runat="server" id="researchGuidance">
                 <div class="row">
                     <div class="form-group col-md-1">
                         <label></label>
@@ -946,7 +948,7 @@
                     </div> -->
                 </div>
         </div>  <!-- panel body ends -->
-            <div class="panel-body" runat="server" id="guidancePreview" visible ="false">
+            <div class="card-content" runat="server" id="guidancePreview" visible ="false">
                 <div class="row">
                     <div class="form-group col-md-1">
                         <label></label>
@@ -1001,11 +1003,11 @@
                 </div>
         </div>
   </div> <!-- Panel Ends -->
-        <div class="panel panel-primary">
-            <div class="panel-heading">
+        <div class="card">
+            <div class="card-header" data-background-color="green">
                 Fellowship, Awards and Invited Lectures delievered in Conferences/Seminars
             </div>
-			<div class ="panel-body"  runat="server" id ="fellowship">
+			<div class ="card-content"  runat="server" id ="fellowship">
                 <div class="shadow-box">
                     <div class="row">  
                         <div class="col-md-12 ">  
@@ -1089,16 +1091,16 @@
                 </div>
             </div>   <!-- Panel Body Ends -->
 
-         <div class ="panel-body" runat ="server" id ="fellowshipPreview" visible ="false">
+         <div class ="card-content" runat ="server" id ="fellowshipPreview" visible ="false">
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="fellowshipGrid" runat="server"></asp:GridView>
         </div>
    </div>   <!-- Panel Ends -->
 
- <div class="panel panel-primary">
-            <div class="panel-heading">
+ <div class="card">
+            <div class="card-header" data-background-color="purple">
                 Development of e-learning delivery process/material
             </div>
-			<div class ="panel-body" runat="server" id ="devEcontent">
+			<div class ="card-content" runat="server" id ="devEcontent">
                 <div class="shadow-box">
                     <div class="row">  
                         <div class="col-md-12 ">  
@@ -1170,7 +1172,7 @@
             </div>   <!-- Panel Body Ends --
         </div>   <!-- Panel Ends -->
      
-         <div class ="panel-body" runat ="server" id ="econtentPreview" visible ="false">
+         <div class ="card-content" runat ="server" id ="econtentPreview" visible ="false">
              <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="econtentGrid" runat="server"></asp:GridView>
         </div>
 </div>
