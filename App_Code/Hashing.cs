@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using BCrypt.Net;
 
-public class Hashing
+/*public class Hashing
 {
     private static string GetRandomSalt()
     {
@@ -20,4 +20,4 @@ public class Hashing
     {
         return BCrypt.Net.BCrypt.CheckPassword(password, correctHash);
     }
-}
+}*/
