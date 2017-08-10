@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 public partial class Registration : System.Web.UI.Page
 {
-    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database = curaj_recruitment;persistsecurityinfo=True");
+    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database = recruitmentdatabase;persistsecurityinfo=True");
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -59,6 +59,7 @@ public partial class Registration : System.Web.UI.Page
             }
             catch (MySqlException ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 if (ex.Number == 1062)
                 {
                     emailExistWarning.Visible = true;

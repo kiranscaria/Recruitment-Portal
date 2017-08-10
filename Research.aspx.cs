@@ -9,6 +9,14 @@ using MySql.Data.MySqlClient;
 
 public partial class Research : System.Web.UI.Page
 {
+    private int user_id = 0;
+
+    //Connection String from web.config File
+    string cs = "server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True";
+    MySqlConnection con;
+    MySqlDataAdapter adapt;
+    DataTable dt;
+
     private bool checkerCatPhdResearch = true;
     private bool checkerCatBookResearchRow = true;
     private bool checkerCatResearchProject = true;
@@ -17,6 +25,15 @@ public partial class Research : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        try
+        {
+            user_id = int.Parse(Request.Cookies["uid"].Value);
+        }
+        catch (Exception ex)
+        {
+
+        }
+
         checkCompletion();
     }
 
@@ -28,7 +45,6 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                int user_id = 400; // replace with session variable
                 string retrieve_command = "select * from application_status where User_ID = " + user_id.ToString();
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
@@ -1106,7 +1122,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @a1," +
                        "@hrs11, @hrs12, @hrs13)";
 
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@a1", row1);
         cmd.Parameters.AddWithValue("@hrs11", prev31);
         cmd.Parameters.AddWithValue("@hrs12", prev21);
@@ -1135,7 +1151,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @a2," +
                        "@hrs21, @hrs22, @hrs23)";
 
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@a2", row2);
         cmd.Parameters.AddWithValue("@hrs21", prev32);
         cmd.Parameters.AddWithValue("@hrs22", prev22);
@@ -1164,7 +1180,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @a3," +
                        "@hrs31, @hrs32, @hrs33)";
 
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@a3", row3);
         cmd.Parameters.AddWithValue("@hrs31", prev33);
         cmd.Parameters.AddWithValue("@hrs32", prev23);
@@ -1193,7 +1209,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @b1," +
                        "@hrs41, @hrs42, @hrs43)";
 
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@b1", row4);
         cmd.Parameters.AddWithValue("@hrs41", prev34);
         cmd.Parameters.AddWithValue("@hrs42", prev24);
@@ -1222,7 +1238,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @b2," +
                        "@hrs51, @hrs52, @hrs53)";
 
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@b2", row5);
         cmd.Parameters.AddWithValue("@hrs51", prev35);
         cmd.Parameters.AddWithValue("@hrs52", prev25);
@@ -1251,7 +1267,7 @@ public partial class Research : System.Web.UI.Page
         cmd.CommandText = "INSERT INTO api_data_ii(User_ID, Activity, PreviousThird, PreviousSecond, PreviousOne) values (@uid, @c1," +
                        "@hrs61, @hrs62, @hrs63)";
 
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@c1", row6);
         cmd.Parameters.AddWithValue("@hrs61", prev36);
         cmd.Parameters.AddWithValue("@hrs62", prev26);
@@ -1288,7 +1304,7 @@ public partial class Research : System.Web.UI.Page
                         "ImpactFactor,Year,VolumeNumber) values (@uid6, @phdPaperTitle, @phdJournalName, @phdAuthorStatus, @phdImpactFactor, " +
                         "@phdYear, @phdVolumeNo)";
 
-                    cmd.Parameters.AddWithValue("@uid6", 400);
+                    cmd.Parameters.AddWithValue("@uid6", user_id);
                     cmd.Parameters.AddWithValue("@phdPaperTitle", phdPaperTitle);
                     cmd.Parameters.AddWithValue("@phdJournalName", phdJournalName);
                     cmd.Parameters.AddWithValue("@phdAuthorStatus", phDauthorStatus);
@@ -1334,7 +1350,7 @@ public partial class Research : System.Web.UI.Page
                         "StatusAsAuthor,Year,Publisher) values (@uid7, @bPubType, @bPaperTitle, @bIsbnNo, @bAuthorStatus, " +
                         "@bPubYear, @bPubName)";
 
-                    cmd.Parameters.AddWithValue("@uid7", 400);
+                    cmd.Parameters.AddWithValue("@uid7", user_id);
                     cmd.Parameters.AddWithValue("@bPubType", bookPubType);
                     cmd.Parameters.AddWithValue("@bPaperTitle", bookPaperTitle);
                     cmd.Parameters.AddWithValue("@bIsbnNo", bookIsbnNo);
@@ -1379,7 +1395,7 @@ public partial class Research : System.Web.UI.Page
                         "Duration, SponsorsDetail) values (@uid8, @rProjectType, @rProjectTitle, @rProjectStatus, @rProjectPeriod, " +
                         "@rProjectSponsor)";
 
-                    cmd.Parameters.AddWithValue("@uid8", 400);
+                    cmd.Parameters.AddWithValue("@uid8", user_id);
                     cmd.Parameters.AddWithValue("@rProjectType", researchProjectType);
                     cmd.Parameters.AddWithValue("@rProjectTitle", researchProjectTitle);
                     cmd.Parameters.AddWithValue("@rProjectStatus", researchProjectStatus);
@@ -1409,7 +1425,7 @@ public partial class Research : System.Web.UI.Page
 
         cmd.CommandText = "INSERT INTO api_data_iii_d(User_ID, GuidanceTo, Number) values (@uid, @mPhilA, @resGuideMphil)";
 
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@mPhilA", DmphilA);
         cmd.Parameters.AddWithValue("@resGuideMphil", DmphilAN);
         try
@@ -1429,7 +1445,7 @@ public partial class Research : System.Web.UI.Page
         string DphdA = phdA.Text;
         string DphdAN = resGuidePhdAward.Text;
         cmd.CommandText = "INSERT INTO api_data_iii_d(User_ID, GuidanceTo, Number) values (@uid, @phdA, @resGuidePhdAward)";
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@phdA", DphdA);
         cmd.Parameters.AddWithValue("@resGuidePhdAward", DphdAN);
         try
@@ -1448,7 +1464,7 @@ public partial class Research : System.Web.UI.Page
         string DphdS = phdS.Text;
         string DphdSN = resGuidePhdSub.Text;
         cmd.CommandText = "INSERT INTO api_data_iii_d(User_ID, GuidanceTo, Number) values (@uid, @phdA, @resGuidePhdAward)";
-        cmd.Parameters.AddWithValue("@uid", 400);
+        cmd.Parameters.AddWithValue("@uid", user_id);
         cmd.Parameters.AddWithValue("@phdA", DphdS);
         cmd.Parameters.AddWithValue("@resGuidePhdAward", DphdSN);
         try
@@ -1484,7 +1500,7 @@ public partial class Research : System.Web.UI.Page
                         "ParticipationAs, SponsorsDetail, Duration) values (@uid9, @fType, @fTitle, @fLevel, @fPart, " +
                         "@fSponsor, @fPeriod)";
 
-                    cmd.Parameters.AddWithValue("@uid9", 400);
+                    cmd.Parameters.AddWithValue("@uid9", user_id);
                     cmd.Parameters.AddWithValue("@fType", fellowshipType);
                     cmd.Parameters.AddWithValue("@fTitle", fellowshipTitle);
                     cmd.Parameters.AddWithValue("@fLevel", fellowshipLevel);
@@ -1530,7 +1546,7 @@ public partial class Research : System.Web.UI.Page
                         "StatusAsAuthor, Duration) values (@uid10, @eTitle, @eDetailAgency, @eModule, @eStatus, " +
                         "@ePeriod)";
 
-                    cmd.Parameters.AddWithValue("@uid10", 400);
+                    cmd.Parameters.AddWithValue("@uid10", user_id);
                     cmd.Parameters.AddWithValue("@eTitle", eLearnTitle);
                     cmd.Parameters.AddWithValue("@eDetailAgency", eLearnDetailAgency);
                     cmd.Parameters.AddWithValue("@eModule", eLearnModule);
@@ -1557,7 +1573,6 @@ public partial class Research : System.Web.UI.Page
 
         if (section1 && section2 && section3 && section4 && section5 && section6 && section7)
         {
-            int user_id = 400; 
             string insert_com = "update application_status set Research = 1 where User_ID = " + user_id.ToString();
             using (MySqlCommand update_details = new MySqlCommand(insert_com, connection))
             {
@@ -1592,7 +1607,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select Activity, PreviousThird, PreviousSecond, PreviousOne from api_data_ii where User_ID = " + 400;
+                string retrieve_command = "Select Activity, PreviousThird, PreviousSecond, PreviousOne from api_data_ii where User_ID = " + user_id;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1672,56 +1687,140 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
-            {
-                connection.Open();
-
-                string retrieve_command = "Select TitleOfPaper, JournalName, StatusAsAuthor, ImpactFactor, Year, VolumeNumber from api_data_iii_a where User_ID = " + 400;
-
-                using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
-                {
-                    using (MySqlDataAdapter da = new MySqlDataAdapter())
-                    {
-                        da.SelectCommand = retrieve_details;
-                        using (DataTable dt = new DataTable())
-                        {
-                            da.Fill(dt);
-                            researchPapersGrid.DataSource = dt;
-                            researchPapersGrid.DataBind();
-                        }
-                    }
-                }
-            }
+            ShowData_1();
         }
 
+    }
+
+    protected void ShowData_1()
+    {
+
+        dt = new DataTable();
+        con = new MySqlConnection(cs);
+        con.Open();
+        adapt = new MySqlDataAdapter("Select TitleOfPaper,JournalName,StatusAsAuthor,ImpactFactor,Year,VolumeNumber from api_data_iii_a where User_ID = " + user_id.ToString(), con);
+        adapt.Fill(dt);
+        if (dt.Rows.Count > 0)
+        {
+
+            researchPapersGrid.DataSource = dt;
+            researchPapersGrid.DataBind();
+        }
+        con.Close();
+    }
+    protected void GridView1_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+    {
+        //NewEditIndex property used to determine the index of the row being edited.
+        researchPapersGrid.EditIndex = e.NewEditIndex;
+        ShowData_1();
+    }
+    protected void GridView1_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
+    {
+
+        //Finding the controls from Gridview for the row which is going to update
+        Label TitleOfPaper = researchPapersGrid.Rows[e.RowIndex].FindControl("lbl_TitleOfPaper") as Label;
+        TextBox JournalName = researchPapersGrid.Rows[e.RowIndex].FindControl("txt_JournalName") as TextBox;
+        TextBox StatusAsAuthor = researchPapersGrid.Rows[e.RowIndex].FindControl("txt_StatusAsAuthor") as TextBox;
+        TextBox ImpactFactor = researchPapersGrid.Rows[e.RowIndex].FindControl("txt_ImpactFactor") as TextBox;
+        TextBox Year = researchPapersGrid.Rows[e.RowIndex].FindControl("txt_Year") as TextBox;
+        TextBox VolumeNumber = researchPapersGrid.Rows[e.RowIndex].FindControl("txt_VolumeNumber") as TextBox;
+     
+        con = new MySqlConnection(cs);
+        con.Open();
+        //updating the record
+        MySqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "Update api_data_iii_a set Year = @Year, JournalName = @JournalName, StatusAsAuthor = @StatusAsAuthor, ImpactFactor = @ImpactFactor, VolumeNumber = @VolumeNumber where User_ID = @user_id and TitleOfPaper = @TitleOfPaper";
+
+        cmd.Parameters.AddWithValue("@TitleOfPaper", TitleOfPaper.Text);
+        cmd.Parameters.AddWithValue("@VolumeNumber", VolumeNumber.Text);
+        cmd.Parameters.AddWithValue("@Year", int.Parse(Year.Text));
+        cmd.Parameters.AddWithValue("@JournalName", JournalName.Text);
+        cmd.Parameters.AddWithValue("@StatusAsAuthor", StatusAsAuthor.Text);
+        cmd.Parameters.AddWithValue("@ImpactFactor", ImpactFactor.Text);
+        cmd.Parameters.AddWithValue("@user_id", user_id);
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        researchPapersGrid.EditIndex = -1;
+        //Call ShowData_1 method for displaying updated data
+        ShowData_1();
+    }
+    protected void GridView1_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
+    {
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        researchPapersGrid.EditIndex = -1;
+        ShowData_1();
     }
 
     protected void publication_preview()
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
-            {
-                connection.Open();
-
-                string retrieve_command = "Select PublicationType, Title, ISBN_No, StatusAsAuthor, Year, Publisher from api_data_iii_b where User_ID = " + 400;
-
-                using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
-                {
-                    using (MySqlDataAdapter da = new MySqlDataAdapter())
-                    {
-                        da.SelectCommand = retrieve_details;
-                        using (DataTable dt = new DataTable())
-                        {
-                            da.Fill(dt);
-                            publicationGrid.DataSource = dt;
-                            publicationGrid.DataBind();
-                        }
-                    }
-                }
-            }
+            ShowData_2();
         }
 
+    }
+
+    protected void ShowData_2()
+    {
+
+        dt = new DataTable();
+        con = new MySqlConnection(cs);
+        con.Open();
+        adapt = new MySqlDataAdapter("Select Title,PublicationType,StatusAsAuthor,ISBN_No,Year,Publisher from api_data_iii_b where User_ID = " + user_id.ToString(), con);
+        adapt.Fill(dt);
+        if (dt.Rows.Count > 0)
+        {
+
+            publicationGrid.DataSource = dt;
+            publicationGrid.DataBind();
+        }
+        con.Close();
+    }
+    protected void GridView2_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+    {
+        //NewEditIndex property used to determine the index of the row being edited.
+        publicationGrid.EditIndex = e.NewEditIndex;
+        ShowData_2();
+    }
+    protected void GridView2_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
+    {
+
+        //Finding the controls from Gridview for the row which is going to update
+        Label Title = publicationGrid.Rows[e.RowIndex].FindControl("lbl_Title") as Label;
+        TextBox PublicationType = publicationGrid.Rows[e.RowIndex].FindControl("txt_PublicationType") as TextBox;
+        TextBox ISBN_No = publicationGrid.Rows[e.RowIndex].FindControl("txt_ISBN_No") as TextBox;
+        TextBox StatusAsAuthor = publicationGrid.Rows[e.RowIndex].FindControl("txt_StatusAsAuthor") as TextBox;
+        TextBox Year = publicationGrid.Rows[e.RowIndex].FindControl("txt_Year") as TextBox;
+        TextBox Publisher = publicationGrid.Rows[e.RowIndex].FindControl("txt_Publisher") as TextBox;
+
+        con = new MySqlConnection(cs);
+        con.Open();
+        //updating the record
+        MySqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "Update api_data_iii_b set Year= @Year, PublicationType= @PublicationType, StatusAsAuthor= @StatusAsAuthor, Publisher= @Publisher, ISBN_No = @ISBN_No where User_ID=@user_id and Title= @Title";
+
+        cmd.Parameters.AddWithValue("@Title",Title.Text);
+        cmd.Parameters.AddWithValue("@PublicationType", PublicationType.Text);
+        cmd.Parameters.AddWithValue("@Year", int.Parse(Year.Text));
+        cmd.Parameters.AddWithValue("@ISBN_No", ISBN_No.Text);
+        cmd.Parameters.AddWithValue("@StatusAsAuthor", StatusAsAuthor.Text);
+        cmd.Parameters.AddWithValue("@Publisher", Publisher.Text);
+        cmd.Parameters.AddWithValue("@user_id", user_id);
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        publicationGrid.EditIndex = -1;
+        //Call ShowData_1 method for displaying updated data
+        ShowData_2();
+    }
+    protected void GridView2_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
+    {
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        publicationGrid.EditIndex = -1;
+        ShowData_2();
     }
 
     protected void guidance_preview()
@@ -1732,7 +1831,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select GuidanceTo, Number from api_data_iii_d where User_ID = " + 400;
+                string retrieve_command = "Select GuidanceTo, Number from api_data_iii_d where User_ID = " + user_id;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1767,28 +1866,72 @@ public partial class Research : System.Web.UI.Page
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
-            {
-                connection.Open();
-
-                string retrieve_command = "Select ProjectType, Title, ParticipationAs, Duration, SponsorsDetail from api_data_iii_c where User_ID = " + 400;
-
-                using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
-                {
-                    using (MySqlDataAdapter da = new MySqlDataAdapter())
-                    {
-                        da.SelectCommand = retrieve_details;
-                        using (DataTable dt = new DataTable())
-                        {
-                            da.Fill(dt);
-                            researchProjectGrid.DataSource = dt;
-                            researchProjectGrid.DataBind();
-                        }
-                    }
-                }
-            }
+            ShowData_3();
         }
 
+    }
+    protected void ShowData_3()
+    {
+
+        dt = new DataTable();
+        con = new MySqlConnection(cs);
+        con.Open();
+        adapt = new MySqlDataAdapter("Select ProjectType,Title,ParticipationAs,Duration,SponsorsDetail from api_data_iii_c where User_ID = " + user_id.ToString(), con);
+        adapt.Fill(dt);
+        if (dt.Rows.Count > 0)
+        {
+
+            researchProjectGrid.DataSource = dt;
+            researchProjectGrid.DataBind();
+        }
+        con.Close();
+    }
+    protected void GridView3_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+    {
+        //NewEditIndex property used to determine the index of the row being edited.
+        researchProjectGrid.EditIndex = e.NewEditIndex;
+        ShowData_3();
+    }
+    protected void GridView3_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
+    {
+
+        //Finding the controls from Gridview for the row which is going to update
+        Label Title = researchProjectGrid.Rows[e.RowIndex].FindControl("lbl_Title") as Label;
+
+        Label ProjectType = researchProjectGrid.Rows[e.RowIndex].FindControl("lbl_ProjectType") as Label;
+
+        TextBox ParticipationAs = researchProjectGrid.Rows[e.RowIndex].FindControl("txt_ParticipationAs") as TextBox;
+
+        TextBox Duration = researchProjectGrid.Rows[e.RowIndex].FindControl("txt_Duration") as TextBox;
+     
+        TextBox SponsorsDetail = researchProjectGrid.Rows[e.RowIndex].FindControl("txt_SponsorsDetail") as TextBox;
+       
+
+        con = new MySqlConnection(cs);
+        con.Open();
+        //updating the record
+        MySqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "Update api_data_iii_c set SponsorsDetail= @SponsorsDetail, Duration= @Duration, ParticipationAs= @ParticipationAs where User_ID=@user_id and Title= @Title and ProjectType = @ProjectType ";
+
+        cmd.Parameters.AddWithValue("@Title", Title.Text);
+        cmd.Parameters.AddWithValue("@ParticipationAs", ParticipationAs.Text);
+        cmd.Parameters.AddWithValue("@Duration", int.Parse(Duration.Text));
+        cmd.Parameters.AddWithValue("@SponsorsDetail", SponsorsDetail.Text);
+        cmd.Parameters.AddWithValue("@ProjectType", ProjectType.Text);
+        cmd.Parameters.AddWithValue("@user_id", user_id);
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        researchProjectGrid.EditIndex = -1;
+        //Call ShowData_1 method for displaying updated data
+        ShowData_3();
+    }
+    protected void GridView3_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
+    {
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        researchProjectGrid.EditIndex = -1;
+        ShowData_3();
     }
 
     protected void fellowship_preview()
@@ -1799,7 +1942,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select Type, Title, Level, ParticipationAs, SponsorsDetail,Duration from api_data_iii_e where User_ID = " + 400;
+                string retrieve_command = "Select Type, Title, Level, ParticipationAs, SponsorsDetail,Duration from api_data_iii_e where User_ID = " + user_id;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1819,6 +1962,72 @@ public partial class Research : System.Web.UI.Page
 
     }
 
+    protected void ShowData_4()
+    {
+
+        dt = new DataTable();
+        con = new MySqlConnection(cs);
+        con.Open();
+        adapt = new MySqlDataAdapter("Select Type,Title,Level,ParticipationAs,Duration,SponsorsDetail from api_data_iii_e where User_ID = " + user_id.ToString(), con);
+        adapt.Fill(dt);
+        if (dt.Rows.Count > 0)
+        {
+
+            fellowshipGrid.DataSource = dt;
+            fellowshipGrid.DataBind();
+        }
+        con.Close();
+    }
+    protected void GridView4_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+    {
+        //NewEditIndex property used to determine the index of the row being edited.
+        fellowshipGrid.EditIndex = e.NewEditIndex;
+        ShowData_4();
+    }
+    protected void GridView4_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
+    {
+
+        //Finding the controls from Gridview for the row which is going to update
+        Label ProjectType = fellowshipGrid.Rows[e.RowIndex].FindControl("lbl_ProjectType") as Label;
+        Label Title = fellowshipGrid.Rows[e.RowIndex].FindControl("lbl_Title") as Label;
+        Label Level = fellowshipGrid.Rows[e.RowIndex].FindControl("lbl_Level") as Label;
+
+        TextBox ParticipationAs = fellowshipGrid.Rows[e.RowIndex].FindControl("txt_ParticipationAs") as TextBox;
+
+        TextBox Duration = fellowshipGrid.Rows[e.RowIndex].FindControl("txt_Duration") as TextBox;
+
+        TextBox SponsorsDetail = fellowshipGrid.Rows[e.RowIndex].FindControl("txt_SponsorsDetail") as TextBox;
+
+
+        con = new MySqlConnection(cs);
+        con.Open();
+        //updating the record
+        MySqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "Update api_data_iii_e set SponsorsDetail= @SponsorsDetail, Duration= @Duration, ParticipationAs= @ParticipationAs where User_ID=@user_id and Title= @Title and Type = @ProjectType ";
+
+        cmd.Parameters.AddWithValue("@Title", Title.Text);
+        cmd.Parameters.AddWithValue("@ParticipationAs", ParticipationAs.Text);
+        cmd.Parameters.AddWithValue("@Duration", int.Parse(Duration.Text));
+        cmd.Parameters.AddWithValue("@SponsorsDetail", SponsorsDetail.Text);
+        cmd.Parameters.AddWithValue("@ProjectType", ProjectType.Text);
+        cmd.Parameters.AddWithValue("@user_id", user_id);
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        fellowshipGrid.EditIndex = -1;
+        //Call ShowData_1 method for displaying updated data
+        ShowData_4();
+    }
+    protected void GridView4_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
+    {
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        fellowshipGrid.EditIndex = -1;
+        ShowData_4();
+    }
+
+
+
     protected void econtent_preview()
     {
         if (!this.IsPostBack)
@@ -1827,7 +2036,7 @@ public partial class Research : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "Select TitleOfModule, AgencyDetail, ForWhom, StatusAsAuthor, Duration from api_data_iii_f where User_ID = " + 400;
+                string retrieve_command = "Select TitleOfModule, AgencyDetail, ForWhom, StatusAsAuthor, Duration from api_data_iii_f where User_ID = " + user_id;
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -1845,6 +2054,70 @@ public partial class Research : System.Web.UI.Page
             }
         }
 
+    }
+
+    protected void ShowData_5()
+    {
+
+        dt = new DataTable();
+        con = new MySqlConnection(cs);
+        con.Open();
+        adapt = new MySqlDataAdapter("Select TitleOfModule,AgencyDetail,ForWhom,StatusAsAuthor,Duration from api_data_iii_f where User_ID = " + user_id.ToString(), con);
+        adapt.Fill(dt);
+        if (dt.Rows.Count > 0)
+        {
+
+            econtentGrid.DataSource = dt;
+            econtentGrid.DataBind();
+        }
+        con.Close();
+    }
+    protected void GridView5_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+    {
+        //NewEditIndex property used to determine the index of the row being edited.
+        econtentGrid.EditIndex = e.NewEditIndex;
+        ShowData_5();
+    }
+    protected void GridView5_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
+    {
+
+        //Finding the controls from Gridview for the row which is going to update
+        Label TitleOfModule = econtentGrid.Rows[e.RowIndex].FindControl("lbl_TitleOfModule") as Label;
+   
+        TextBox AgencyDetail = econtentGrid.Rows[e.RowIndex].FindControl("txt_AgencyDetail") as TextBox;
+
+        TextBox ForWhom = econtentGrid.Rows[e.RowIndex].FindControl("txt_ForWhom") as TextBox;
+
+        TextBox StatusAsAuthor = econtentGrid.Rows[e.RowIndex].FindControl("txt_StatusAsAuthor") as TextBox;
+
+        TextBox Duration = econtentGrid.Rows[e.RowIndex].FindControl("txt_Duration") as TextBox;
+
+
+        con = new MySqlConnection(cs);
+        con.Open();
+        //updating the record
+        MySqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "Update api_data_iii_f set AgencyDetail= @AgencyDetail, Duration= @Duration, ForWhom= @ForWhom, StatusAsAuthor = @StatusAsAuthor where User_ID=@user_id and TitleOfModule= @TitleOfModule ";
+
+        cmd.Parameters.AddWithValue("@TitleOfModule", TitleOfModule.Text);
+        cmd.Parameters.AddWithValue("@AgencyDetail", AgencyDetail.Text);
+        cmd.Parameters.AddWithValue("@Duration", int.Parse(Duration.Text));
+        cmd.Parameters.AddWithValue("@ForWhom", ForWhom.Text);
+        cmd.Parameters.AddWithValue("@StatusAsAuthor", StatusAsAuthor.Text);
+        cmd.Parameters.AddWithValue("@user_id", user_id);
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        econtentGrid.EditIndex = -1;
+        //Call ShowData_1 method for displaying updated data
+        ShowData_5();
+    }
+    protected void GridView5_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
+    {
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        econtentGrid.EditIndex = -1;
+        ShowData_5();
     }
 
     protected void proceed_Click(object sender, EventArgs e)

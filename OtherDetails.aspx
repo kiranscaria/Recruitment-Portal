@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/FormsMasterPage.master" AutoEventWireup="true" CodeFile="otherDetails.aspx.cs" Inherits="otherDetails" %>
+﻿<%@ Page Title="" Language="C#" ValidateRequest="false" MaintainScrollPositionOnPostback="true" MasterPageFile="~/FormsMasterPage.master" AutoEventWireup="true" CodeFile="otherDetails.aspx.cs" Inherits="otherDetails" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <!-- include summernote css/js-->
@@ -20,21 +20,15 @@
                             <div>
                                 <div class="form-group"">
                                     <strong><asp:Label runat="server"> In which language are you comfortable in teaching?</asp:Label></strong><br />
-                                    <%--<asp:RadioButton runat="server" id="teachLangEng" GroupName="teachLang" /> 
+                                    <asp:RadioButton runat="server" id="teachLangEng" GroupName="teachLang" /> 
                                     <asp:label for="teachLangEng" runat="server">English</asp:label> 
                                     <br/>
                                     <asp:RadioButton runat="server" id="teachLangHin" GroupName="teachLang" /> 
                                     <asp:label for="teachLangHin" runat="server">Hindi</asp:label>
                                     <br/>
                                     <asp:RadioButton runat="server" id="teachLangBoth" GroupName="teachLang" /> 
-                                    <asp:label for="teachLangBoth" runat="server">Both (English and Hindi)</asp:label>--%>
+                                    <asp:label for="teachLangBoth" runat="server">Both (English and Hindi)</asp:label>
                                     
-                                    <asp:RadioButtonList ID="ComfortLanguage" runat="server" RepeatDirection="Vertical" required="true">
-                                        <asp:ListItem Value="English" >English</asp:ListItem>
-                                        <asp:ListItem Value="Hindi"> Hindi</asp:ListItem>
-                                        <asp:ListItem Value="Both (English and Hindi)"> Both (English and Hindi)</asp:ListItem>
-                                    </asp:RadioButtonList>
-
                                 </div>
                             </div>
 
@@ -44,30 +38,30 @@
                             <br/>
 
                             <%--<strong><asp:Label runat="server">Membership/Fellowship of Academies/Institutions/Professional societies:</asp:Label></strong>
-                            <div class="summernote" id="fellowshipText">
+                            <div class="summernote" runat="server" id="fellowshipText">
                                 <p></p>
                             </div>
 
                             <br/>--%>
 
                             <strong><asp:Label runat="server">Responsibilities: (Academic/Administrative)</asp:Label></strong>
-                            <div class="summernote" id="responsibilitiesText">
-                                <p></p>
-                            </div>
+                            <textarea class="summernote" runat="server" id="responsibilitiesText" >
+                                
+                            </textarea>
 
                             <br/>
 
                             <strong><asp:Label runat="server">Any other relevant information, if not given above:</asp:Label></strong>
-                            <div class="summernote" id="anyOtherInfoText">
-                                <p></p>
-                            </div>
+                            <textarea class="summernote" runat="server" id="anyOtherInfoText">
+                                
+                            </textarea>
 
                             <br/>
 
                             <strong><asp:Label runat="server"> Are you willing to accept the minimum initial pay in the grade? If not, state reasons for claiming higher starting pay.</asp:Label></strong>
-                            <div class="summernote" id="minPayText">
+                            <textarea class="summernote" runat="server" id="minPayText">
                                 <p></p>
-                            </div>
+                            </textarea>
 
                             <br/>
 
@@ -88,8 +82,8 @@
                                         <asp:RadioButton runat="server" id="punishedGenderNo" GroupName="punishedGender"  AutoPostBack="True" OnCheckedChanged="punishedGenderChanged"/> 
                                         <label for="punishedGenderNo">No</label>
 
-                                        <div id="punishedGenderText" class="summernote" visible="false" runat="server">
-                                        </div>
+                                        <textarea id="punishedGenderText" class="summernote" visible="false" runat="server">
+                                        </textarea>
                                     </div>
                                 </div>
                                 <br/>
@@ -104,8 +98,8 @@
                                         <asp:RadioButton runat="server" id="mentallyUnfitNo" GroupName="mentallyUnfit" AutoPostBack="True" OnCheckedChanged="mentallyUnfitChanged"/> 
                                         <label for="mentallyUnfitNo">No</label>
 
-                                        <div id="mentallyUnfitText" class="summernote" visible="false" runat="server">
-                                        </div>
+                                        <textarea id="mentallyUnfitText" class="summernote" runat="server" visible="false" runat="server">
+                                        </textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-group">
@@ -118,8 +112,8 @@
                                         <asp:RadioButton runat="server" id="criminalCaseNo" GroupName="criminalCase"  AutoPostBack="True" OnCheckedChanged="criminalCaseChanged"/> 
                                         <label for="criminalCaseNo">No</label>
 
-                                        <div id="criminalCaseText" class="summernote" visible="false" runat="server">
-                                        </div>
+                                        <textarea id="criminalCaseText" class="summernote" runat="server" visible="false" runat="server">
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>      <!-- Row Ends -->
@@ -133,7 +127,7 @@
                                         <asp:RadioButton runat="server" id="AppliedPostNo" GroupName="AppliedPost"  AutoPostBack="True" OnCheckedChanged="AppliedPostChanged"/> 
                                         <label for="AppliedPostNo">No</label>
 
-                                        <div  runat="server" id="AppliedPostText" class="summernote"  Visible="false"></div>
+                                        <textarea  runat="server" id="AppliedPostText" class="summernote"  Visible="false"></textarea>
                                       </div>
                                   </div>   
                                 </div>  
@@ -164,15 +158,15 @@
                                   </div>   
                               </div>     
                          
-
-                            <div class="row">
+                            <br/>
+                            <%--<div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <strong><asp:Label runat="server">Conditions for acceptance, if offered.</asp:Label></strong><br />
-                                        <div id="AcceptanceConditions" runat="server" class="summernote" visible="true"></div>
+                                        <textarea id="AcceptanceConditions" runat="server" class="summernote" visible="true"></textarea>
                                      </div>
                                   </div>   
-                              </div>      
+                              </div>     --%> 
                             
                             <strong><asp:Label runat="server">If selected, how much time would you require to join?</asp:Label></strong><br />
                             <div class="row">
@@ -341,14 +335,11 @@
                             <asp:Table ID="tblOtherDetails1" CssClass="table" runat="server">
                                 <asp:TableRow>
                                     <asp:TableCell><strong>In which language are you comfortable in teaching?</strong></asp:TableCell>
-                                    <asp:TableCell><asp:Label ID="lblOtherDetailLang" runat="server"></asp:Label></asp:TableCell>
+                                    <asp:TableCell><asp:Label ID="lblLang" runat="server"></asp:Label></asp:TableCell>
                                 </asp:TableRow>
+      
                                 <asp:TableRow>
-                                    <asp:TableCell><strong>Membership/Fellowship of academies/institutions/professional societies:</strong></asp:TableCell>
-                                    <asp:TableCell><asp:Label ID="lblOtherDetailFellowship" runat="server"></asp:Label></asp:TableCell>
-                                </asp:TableRow>
-                                <asp:TableRow>
-                                    <asp:TableCell><strong>Other activities/Responsibilities: (Academic/Administrative)</strong></asp:TableCell>
+                                    <asp:TableCell><strong>Other Responsibilities: (Academic/Administrative)</strong></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblOtherDetailResponsibilities" runat="server"></asp:Label></asp:TableCell>
                                 </asp:TableRow>
                                 <asp:TableRow>
@@ -393,8 +384,24 @@
                                         <asp:Label ID="lblDisclosureText3" runat="server"></asp:Label>
                                     </asp:TableCell>
                                 </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>Whether applying for deputation? (for Govt. employee) : </asp:TableCell>
+                                    <asp:TableCell><asp:Label ID="lblDisclosure4" runat="server"></asp:Label></asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>Have you applied for any other post in the University? : </asp:TableCell>
+                                    <asp:TableCell><asp:Label ID="lblDisclosure5" runat="server"></asp:Label></asp:TableCell>
+                                </asp:TableRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>Whether applying as retired person? : </asp:TableCell>
+                                    <asp:TableCell><asp:Label ID="lblDisclosure6" runat="server"></asp:Label></asp:TableCell>
+                      
+                                </asp:TableRow>
                             </asp:Table>
                             <hr />
+                            <br/>
+                            <br/>
+                            <div id="refreeAcademic" runat="server">
                             <label style="font-weight:bold;">Three Referees familiar with your academic work</label>
                             <asp:Table ID="tblOtherDetails3" CssClass="table" runat="server">
                                 <asp:TableRow>
@@ -412,7 +419,7 @@
                                     <asp:TableCell><asp:Label runat="server">1</asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeName1" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeInstitution1" runat="server"></asp:Label></asp:TableCell>
-                                    <asp:TableCell><asp:Label ID="lblRefreeDegignation1" runat="server"></asp:Label></asp:TableCell>
+                                    <asp:TableCell><asp:Label ID="lblRefreeDesignation1" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeAddress1" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeMobile1" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeEmail1" runat="server"></asp:Label></asp:TableCell>
@@ -422,7 +429,7 @@
                                     <asp:TableCell><asp:Label runat="server">2</asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeName2" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeInstitution2" runat="server"></asp:Label></asp:TableCell>
-                                    <asp:TableCell><asp:Label ID="lblRefreeDegignation2" runat="server"></asp:Label></asp:TableCell>
+                                    <asp:TableCell><asp:Label ID="lblRefreeDesignation2" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeAddress2" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeMobile2" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeEmail2" runat="server"></asp:Label></asp:TableCell>
@@ -432,13 +439,14 @@
                                     <asp:TableCell><asp:Label runat="server">3</asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeName3" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeInstitution3" runat="server"></asp:Label></asp:TableCell>
-                                    <asp:TableCell><asp:Label ID="lblRefreeDegignation3" runat="server"></asp:Label></asp:TableCell>
+                                    <asp:TableCell><asp:Label ID="lblRefreeDesignation3" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeAddress3" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeMobile3" runat="server"></asp:Label></asp:TableCell>
                                     <asp:TableCell><asp:Label ID="lblRefreeEmail3" runat="server"></asp:Label></asp:TableCell>
                                 </asp:TableRow>
                             </asp:Table>
-
+                                </div>
+                            
                             <hr class="line" />
                             <div class="form-group text-center">
                                 <asp:Button CssClass="btn btn-primary" ID="btnOtherDetailEdit" runat="server" Text="Edit Details"
@@ -451,7 +459,6 @@
                 </asp:Table>
             </div>       <!-- Panel Body Ends -->
         </div>       <!-- Panel Ends -->
-
 
         
     </form>      <!-- Form Ends-->
@@ -489,5 +496,16 @@
             return true;
         }
     </script>
+
+    <script>
+        $(function () {
+            // Set up your summernote instance
+            $("#responsibilitiesText").summernote();
+            // When the summernote instance loses focus, update the content of your <textarea>
+            $("#responsibilitiesText").on('summernote.blur', function () {
+                $('#responsibilitiesText').html($('#responsibilitiesText').summernote('code'));
+            });
+        });
+</script>
 </asp:Content>
 

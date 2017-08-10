@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 
 public partial class Login : System.Web.UI.Page
 {
-    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = blackhat; database=curaj_recruitment; persistsecurityinfo=True");
+    MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True");
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -113,20 +113,20 @@ public partial class Login : System.Web.UI.Page
                     MySqlDataReader reader = cmd2.ExecuteReader();
                     string email_id = "";
                     string user_id = "";
+                    string mobile_no = "";
 
                     while (reader.Read())
                     {
                         email_id = reader.GetString("Email");
                         user_id = reader.GetString("User_ID");
+                        mobile_no = reader.GetString("Mobile_No");
                     }
 
 
                     Response.Cookies.Add(new HttpCookie("email", email_id));
                     Response.Cookies.Add(new HttpCookie("uid", user_id));
+                    Response.Cookies.Add(new HttpCookie("mobile", mobile_no));
 
-                    System.Diagnostics.Debug.WriteLine(Request.Cookies["email"].Value);
-                    System.Diagnostics.Debug.WriteLine(Request.Cookies["uid"].Value);
-                   
                 }
                 catch(MySqlException ex)
                 {
@@ -137,7 +137,7 @@ public partial class Login : System.Web.UI.Page
                     if (connection != null) connection.Close();
                 }
 
-                Response.Redirect("GeneralDetails.aspx");
+                Response.Redirect("Default.aspx");
             }
             else
             {

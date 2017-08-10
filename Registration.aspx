@@ -9,7 +9,7 @@
     <form role="form" id="registration" runat="server" class="login-form">
         <div class="jumbotron" style="background: rgba(200, 200, 200, 0.05);color:white;margin-bottom:0px;padding-bottom:0px;padding-top:20px;";>
           <h1>Central University of Rajasthan</h1> 
-          <p><strong>Staff Recruitment Portal</strong></p> 
+          <p><strong>Recruitment Portal</strong></p> 
         </div>
         <div class="top-content" style="padding-top:0px;margin-top:0px;">
             <div class="inner-bg" style="padding-top:0px;margin-top:0px;">
