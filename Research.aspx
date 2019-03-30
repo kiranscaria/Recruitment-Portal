@@ -604,9 +604,67 @@
                 </div>
             </div>   <!-- Panel Body Ends -->
 
-         <div class ="card-content" runat ="server" id ="researchPapersPreview" visible ="false">
+         <div class ="card-content" runat ="server" id ="researchPapersPreview" visible ="false" >
              <asp:Label ID="phdApiScore" runat="server"></asp:Label>
-             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchPapersGrid" runat="server"></asp:GridView>
+             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchPapersGrid" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView1_RowCancelingEdit" OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
+                <Columns>
+                <asp:TemplateField HeaderText="TitleOfPaper">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_TitleOfPaper" runat="server" Text='<%#Eval("TitleOfPaper") %>'></asp:Label>
+                    </ItemTemplate>
+                    
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="JournalName">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_JournalName" runat="server" Text='<%#Eval("JournalName") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_JournalName" runat="server" Text='<%#Eval("JournalName") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="StatusAsAuthor">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_StatusAsAuthor" runat="server" Text='<%#Eval("StatusAsAuthor") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_StatusAsAuthor" runat="server" Text='<%#Eval("StatusAsAuthor") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="ImpactFactor">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_ImpactFactor" runat="server" Text='<%#Eval("ImpactFactor") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_ImpactFactor" runat="server" Text='<%#Eval("ImpactFactor") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Year">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Year" runat="server" Text='<%#Eval("Year") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_Year" runat="server" Text='<%#Eval("Year") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="VolumeNumber">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_VolumeNumber" runat="server" Text='<%#Eval("VolumeNumber") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_VolumeNumber" runat="server" Text='<%#Eval("VolumeNumber") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button CssClass="btn btn-warning btn-sm" ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:Button CssClass="btn btn-success btn-sm" ID="btn_Update" runat="server" Text="Update" CommandName="Update"/>
+                        <asp:Button CssClass="btn btn-danger btn-sm" ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel"/>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+             </asp:GridView>
         </div>
 
         </div>   <!-- Panel Ends -->
@@ -792,7 +850,65 @@
 
                 <div class ="card-content" runat ="server" id ="publicationPreview" visible ="false">
                     <asp:Label ID="bookApiScore" runat="server"></asp:Label>
-             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="publicationGrid" runat="server"></asp:GridView>
+             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="publicationGrid" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView2_RowCancelingEdit" OnRowEditing="GridView2_RowEditing" OnRowUpdating="GridView2_RowUpdating">
+             <Columns>
+                <asp:TemplateField HeaderText="Title">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Title" runat="server" Text='<%#Eval("Title") %>'></asp:Label>
+                    </ItemTemplate>
+                    
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="PublicationType">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_PublicationType" runat="server" Text='<%#Eval("PublicationType") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_PublicationType" runat="server" Text='<%#Eval("PublicationType") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="ISBN_No">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_ISBN_No" runat="server" Text='<%#Eval("ISBN_No") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_ISBN_No" runat="server" Text='<%#Eval("ISBN_No") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="StatusAsAuthor">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_StatusAsAuthor" runat="server" Text='<%#Eval("StatusAsAuthor") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_StatusAsAuthor" runat="server" Text='<%#Eval("StatusAsAuthor") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Year">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Year" runat="server" Text='<%#Eval("Year") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_Year" runat="server" Text='<%#Eval("Year") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Publisher">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Publisher" runat="server" Text='<%#Eval("Publisher") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_Publisher" runat="server" Text='<%#Eval("Publisher") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button CssClass="btn btn-warning btn-sm" ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:Button CssClass="btn btn-success btn-sm" ID="btn_Update" runat="server" Text="Update" CommandName="Update"/>
+                        <asp:Button CssClass="btn btn-danger btn-sm" ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel"/>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+             </asp:GridView>
         </div>
 
         </div>   <!-- Panel Ends -->
@@ -884,7 +1000,53 @@
 
        <div class ="card-content" runat ="server" id ="researchProjectPreview" visible ="false">
            <asp:Label runat="server" ID="projectApiScore"></asp:Label>
-             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchProjectGrid" runat="server"></asp:GridView>
+             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="researchProjectGrid" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView3_RowCancelingEdit" OnRowEditing="GridView3_RowEditing" OnRowUpdating="GridView3_RowUpdating">
+             <Columns>
+                <asp:TemplateField HeaderText="ProjectType">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_ProjectType" runat="server" Text='<%#Eval("ProjectType") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Title">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Title" runat="server" Text='<%#Eval("Title") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="ParticipationAs">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_ParticipationAs" runat="server" Text='<%#Eval("ParticipationAs") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_ParticipationAs" runat="server" Text='<%#Eval("ParticipationAs") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Duration">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Duration" runat="server" Text='<%#Eval("Duration") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_Duration" runat="server" Text='<%#Eval("Duration") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="SponsorsDetail">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_SponsorsDetail" runat="server" Text='<%#Eval("SponsorsDetail") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_SponsorsDetail" runat="server" Text='<%#Eval("SponsorsDetail") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button CssClass="btn btn-warning btn-sm" ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:Button CssClass="btn btn-success btn-sm" ID="btn_Update" runat="server" Text="Update" CommandName="Update"/>
+                        <asp:Button CssClass="btn btn-danger btn-sm" ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel"/>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+             </asp:GridView>
         </div>
         </div>   <!-- Panel Ends -->
 
@@ -1096,7 +1258,59 @@
 
          <div class ="card-content" runat ="server" id ="fellowshipPreview" visible ="false">
              <asp:Label ID="fellowshipApiScore" runat="server"></asp:label>
-             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="fellowshipGrid" runat="server"></asp:GridView>
+             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="fellowshipGrid" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView4_RowCancelingEdit" OnRowEditing="GridView4_RowEditing" OnRowUpdating="GridView4_RowUpdating">
+                 <Columns>
+                <asp:TemplateField HeaderText="Type">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_ProjectType" runat="server" Text='<%#Eval("Type") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Title">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Title" runat="server" Text='<%#Eval("Title") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Level">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Level" runat="server" Text='<%#Eval("Level") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="ParticipationAs">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_ParticipationAs" runat="server" Text='<%#Eval("ParticipationAs") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_ParticipationAs" runat="server" Text='<%#Eval("ParticipationAs") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="SponsorsDetail">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_SponsorsDetail" runat="server" Text='<%#Eval("SponsorsDetail") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_SponsorsDetail" runat="server" Text='<%#Eval("SponsorsDetail") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Duration">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Duration" runat="server" Text='<%#Eval("Duration") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_Duration" runat="server" Text='<%#Eval("Duration") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button CssClass="btn btn-warning btn-sm" ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:Button CssClass="btn btn-success btn-sm" ID="btn_Update" runat="server" Text="Update" CommandName="Update"/>
+                        <asp:Button CssClass="btn btn-danger btn-sm" ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel"/>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+
+             </asp:GridView>
         </div>
    </div>   <!-- Panel Ends -->
 
@@ -1178,7 +1392,58 @@
      
          <div class ="card-content" runat ="server" id ="econtentPreview" visible ="false">
              <asp:Label ID="elearnApiScore" runat="server"></asp:Label>
-             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="econtentGrid" runat="server"></asp:GridView>
+             <asp:GridView CssClass="table table-bordered table-striped table-hover" ID="econtentGrid" runat="server" AutoGenerateColumns="False" OnRowCancelingEdit="GridView5_RowCancelingEdit" OnRowEditing="GridView5_RowEditing" OnRowUpdating="GridView5_RowUpdating">
+                   <Columns>
+                <asp:TemplateField HeaderText="TitleOfModule">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_TitleOfModule" runat="server" Text='<%#Eval("TitleOfModule") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField HeaderText="AgencyDetail">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_AgencyDetail" runat="server" Text='<%#Eval("AgencyDetail") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_AgencyDetail" runat="server" Text='<%#Eval("AgencyDetail") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="ForWhom">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_ForWhom" runat="server" Text='<%#Eval("ForWhom") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_ForWhom" runat="server" Text='<%#Eval("ForWhom") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="StatusAsAuthor">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_StatusAsAuthor" runat="server" Text='<%#Eval("StatusAsAuthor") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_StatusAsAuthor" runat="server" Text='<%#Eval("StatusAsAuthor") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Duration">
+                    <ItemTemplate>
+                        <asp:Label ID="lbl_Duration" runat="server" Text='<%#Eval("Duration") %>'></asp:Label>
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:TextBox class="input-sm" ID="txt_Duration" runat="server" Text='<%#Eval("Duration") %>'></asp:TextBox>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button CssClass="btn btn-warning btn-sm" ID="btn_Edit" runat="server" Text="Edit" CommandName="Edit" />
+                    </ItemTemplate>
+                    <EditItemTemplate>
+                        <asp:Button CssClass="btn btn-success btn-sm" ID="btn_Update" runat="server" Text="Update" CommandName="Update"/>
+                        <asp:Button CssClass="btn btn-danger btn-sm" ID="btn_Cancel" runat="server" Text="Cancel" CommandName="Cancel"/>
+                    </EditItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+             </asp:GridView>
         </div>
 </div>
 

@@ -10,8 +10,20 @@ using MySql.Data.MySqlClient;
 
 public partial class _Default : System.Web.UI.Page
 {
+    private int user_id = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+        try
+        {
+            user_id = int.Parse(Request.Cookies["uid"].Value);
+        }
+        catch (Exception ex)
+        {
+
+        }
+
         checkPreviousSessions();
 
         loadDropDownPosts();
@@ -27,7 +39,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 connection.Open();
 
-                string retrieve_command = "select Post, Department, Specialisation, Category from application_status";
+                string retrieve_command = "select Post, Department, Specialisation, Category from application_status where User_ID = " + user_id.ToString();
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
                 {
@@ -139,9 +151,7 @@ public partial class _Default : System.Web.UI.Page
                     "values (@User_ID, @Post_Applied, @Department, @Specialisation, @Post_Category, @General_Details, @Academic_Details, @Experience, @Research, @Other_Details, @Declaration, @Preview, @Uploads, @Payment)";
                 using (MySqlCommand insert_details = new MySqlCommand(insert_command, connection))
                 {
-                    System.Diagnostics.Debug.WriteLine("Here");
-                    int user_name = 400;// int.Parse(HttpContext.Current.Session["user_id"].ToString());
-                    insert_details.Parameters.AddWithValue("@User_ID", user_name);
+                    insert_details.Parameters.AddWithValue("@User_ID", user_id);
                     insert_details.Parameters.AddWithValue("@Post_Applied", postList.SelectedItem.ToString());
                     insert_details.Parameters.AddWithValue("@Department", postDepartment.SelectedItem.ToString());
                     insert_details.Parameters.AddWithValue("@Specialisation", postSpecialisation.SelectedItem.ToString());
@@ -193,7 +203,6 @@ public partial class _Default : System.Web.UI.Page
             {
                 connection.Open();
 
-                int user_id = 402;
                 string retrieve_command = "select * from application_status where User_ID = " + user_id.ToString();
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))

@@ -9,10 +9,26 @@ using MySql.Data.MySqlClient;
 
 public partial class Experience : System.Web.UI.Page
 {
+    private int user_id = 0;
+    //Connection String from web.config File
+    string cs = "server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True";
+    MySqlConnection con;
+    MySqlDataAdapter adapt;
+    DataTable dt;
+
     private bool checker = true;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        try
+        {
+            user_id = int.Parse(Request.Cookies["uid"].Value);
+        }
+        catch (Exception ex)
+        {
+
+        }
+
         checkCompletion();
 
     }
@@ -25,7 +41,6 @@ public partial class Experience : System.Web.UI.Page
             {
                 connection.Open();
 
-                int user_id = 400; // replace with session variable
                 string retrieve_command = "select * from application_status where User_ID = " + user_id.ToString();
 
                 using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
@@ -39,19 +54,17 @@ public partial class Experience : System.Web.UI.Page
                     {
                         if (int.Parse(dr["Experience"].ToString()) == 0)
                         {
-                            experience.Visible = true;
+                            cardExperience.Visible = true;
+                            cardExperience_Preview.Visible = false;
 
                             FirstGridViewTeachRow();
 
                         }
                         else
                         {
-                            experience.Visible = false;
-
-                            experiencePreview.Visible = true;
-
-                            experienc_preview();
-
+                            experience_preview();
+                            cardExperience.Visible = false;
+                            cardExperience_Preview.Visible = true;
                         }
                     }
                 }
@@ -83,7 +96,6 @@ public partial class Experience : System.Web.UI.Page
         teach_dt.Columns.Add(new DataColumn("Col5", typeof(string)));
         teach_dt.Columns.Add(new DataColumn("Col6", typeof(string)));
         teach_dt.Columns.Add(new DataColumn("Col7", typeof(string)));
-        teach_dt.Columns.Add(new DataColumn("Col8", typeof(string)));
 
         teach_dr = teach_dt.NewRow();
         teach_dr["RowNumber"] = 1;
@@ -94,7 +106,6 @@ public partial class Experience : System.Web.UI.Page
         teach_dr["Col5"] = string.Empty;
         teach_dr["Col6"] = string.Empty;
         teach_dr["Col7"] = string.Empty;
-        teach_dr["Col8"] = string.Empty;
 
         teach_dt.Rows.Add(teach_dr);
 
@@ -129,8 +140,7 @@ public partial class Experience : System.Web.UI.Page
                     TextBox experienceTeachSalary = (TextBox)gridFullTeach.Rows[rowIndex].Cells[4].FindControl("experienceTeachSalary");
                     TextBox experienceTeachFrom = (TextBox)gridFullTeach.Rows[rowIndex].Cells[5].FindControl("experienceTeachFrom");
                     TextBox experienceTeachTo = (TextBox)gridFullTeach.Rows[rowIndex].Cells[6].FindControl("experienceTeachTo");
-                    Label lblDuration = (Label)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("lblDuration");
-                    DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[8].FindControl("experienceType");
+                    DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("experienceType");
                     drCurrentRow = dtCurrentTeachTable.NewRow();
                     drCurrentRow["RowNumber"] = i + 1;
 
@@ -140,8 +150,7 @@ public partial class Experience : System.Web.UI.Page
                     dtCurrentTeachTable.Rows[i - 1]["Col4"] = experienceTeachSalary.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col5"] = experienceTeachFrom.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col6"] = experienceTeachTo.Text;
-                    dtCurrentTeachTable.Rows[i - 1]["Col7"] = lblDuration.Text;
-                    dtCurrentTeachTable.Rows[i - 1]["Col8"] = experienceType.SelectedItem.Text;
+                    dtCurrentTeachTable.Rows[i - 1]["Col7"] = experienceType.Text;
 
                     rowIndex++;
                 }
@@ -158,7 +167,7 @@ public partial class Experience : System.Web.UI.Page
         }
         else
         {
-            Response.Write("ViewState is null");
+            //Response.Write("ViewState is null");
         }
         SetPreviousDataTeach();
     }
@@ -178,8 +187,7 @@ public partial class Experience : System.Web.UI.Page
                     TextBox experienceTeachSalary = (TextBox)gridFullTeach.Rows[rowIndex].Cells[4].FindControl("experienceTeachSalary");
                     TextBox experienceTeachFrom = (TextBox)gridFullTeach.Rows[rowIndex].Cells[5].FindControl("experienceTeachFrom");
                     TextBox experienceTeachTo = (TextBox)gridFullTeach.Rows[rowIndex].Cells[6].FindControl("experienceTeachTo");
-                    Label lblDuration = (Label)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("lblDuration");
-                    DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[9].FindControl("experienceType");
+                    DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("experienceType");
                     // drCurrentRow["RowNumber"] = i + 1;
 
                     gridFullTeach.Rows[i].Cells[0].Text = Convert.ToString(i + 1);
@@ -189,8 +197,7 @@ public partial class Experience : System.Web.UI.Page
                     experienceTeachSalary.Text = teach_dt.Rows[i]["Col4"].ToString();
                     experienceTeachFrom.Text = teach_dt.Rows[i]["Col5"].ToString();
                     experienceTeachTo.Text = teach_dt.Rows[i]["Col6"].ToString();
-                    lblDuration.Text = teach_dt.Rows[i]["Col7"].ToString();
-                    experienceType.SelectedItem.Text = teach_dt.Rows[i]["Col8"].ToString();
+                    experienceType.Text = teach_dt.Rows[i]["Col7"].ToString();
                     rowIndex++;
                 }
             }
@@ -244,7 +251,6 @@ public partial class Experience : System.Web.UI.Page
                     TextBox experienceTeachSalary = (TextBox)gridFullTeach.Rows[rowIndex].Cells[4].FindControl("experienceTeachSalary");
                     TextBox experienceTeachFrom = (TextBox)gridFullTeach.Rows[rowIndex].Cells[5].FindControl("experienceTeachFrom");
                     TextBox experienceTeachTo = (TextBox)gridFullTeach.Rows[rowIndex].Cells[6].FindControl("experienceTeachTo");
-                    Label lblDuration = (Label)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("lblDuration");
                     DropDownList experienceType = (DropDownList)gridFullTeach.Rows[rowIndex].Cells[7].FindControl("experienceType");
 
                     drCurrentRow = dtCurrentTeachTable.NewRow();
@@ -255,8 +261,7 @@ public partial class Experience : System.Web.UI.Page
                     dtCurrentTeachTable.Rows[i - 1]["Col4"] = experienceTeachSalary.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col5"] = experienceTeachFrom.Text;
                     dtCurrentTeachTable.Rows[i - 1]["Col6"] = experienceTeachTo.Text;
-                    dtCurrentTeachTable.Rows[i - 1]["Col7"] = lblDuration.Text;
-                    dtCurrentTeachTable.Rows[i - 1]["Col8"] = experienceType.Text;
+                    dtCurrentTeachTable.Rows[i - 1]["Col7"] = experienceType.Text;
                     rowIndex++;
                 }
 
@@ -267,7 +272,7 @@ public partial class Experience : System.Web.UI.Page
         }
         else
         {
-            Response.Write("ViewState is null");
+           // Response.Write("ViewState is null");
         }
         //SetPreviousDataTeach();
     }
@@ -275,9 +280,9 @@ public partial class Experience : System.Web.UI.Page
     
     protected void submitExperience_Click(object sender, EventArgs e)
     {
-        bool submit_success = false;
         if (checker)
             SetRowDataTeach();
+        bool submit_success = false;
         MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True");
 
         try
@@ -304,20 +309,16 @@ public partial class Experience : System.Web.UI.Page
                    string expTeachSalary = teach_dt.Rows[i]["Col4"].ToString();
                    string expTeachFrom = teach_dt.Rows[i]["Col5"].ToString();
                    string expTeachingTo = teach_dt.Rows[i]["Col6"].ToString();
-                   string duration = teach_dt.Rows[i]["Col7"].ToString();
-                   string expType = teach_dt.Rows[i]["Col8"].ToString();
+                   string expType = teach_dt.Rows[i]["Col7"].ToString();
 
-                    //System.DateTime from = Convert.ToDateTime(expTeachFrom);
-                    //  System.DateTime to = Convert.ToDateTime(expTeachingTo);
-
-                    
-
+                                    
                     MySqlCommand cmd = connection.CreateCommand();
 
-                    cmd.CommandText = "INSERT INTO experience_table() values (@uid,@employer,@designation," +
-                                      "@status,@salary,STR_TO_DATE(@from,'%Y-%m-%d'),STR_TO_DATE(@to,'%Y-%m-%d'),@exptype,timestampdiff(MONTH,@from,@to))";
+                    cmd.CommandText = "INSERT INTO experience_table(User_ID, Employer, Designation, Status, BasicPay, FromDate, ToDate, " +
+                        "TypeOfExperience, Duration) values (@uid,@employer,@designation, @status,@salary,@from,@to,@exptype, " +
+                        "timestampdiff(MONTH, @from, @to))";
 
-                    cmd.Parameters.AddWithValue("@uid", 400);
+                    cmd.Parameters.AddWithValue("@uid", user_id);
                     cmd.Parameters.AddWithValue("@employer", expTeachingUniversityName);
                     cmd.Parameters.AddWithValue("@designation", expteachingDesignation);
                     cmd.Parameters.AddWithValue("@status", expteachingStatus);
@@ -338,18 +339,14 @@ public partial class Experience : System.Web.UI.Page
                         submit_success = false;
                     }
 
-
                     cmd.Parameters.Clear();
 
                     rowIndex++;
-
-
                 }
             }
         }
         if (submit_success)
         {
-            int user_id = 400;
             string insert_com = "update application_status set Experience = 1 where User_ID = " + user_id.ToString();
             using (MySqlCommand update_details = new MySqlCommand(insert_com, connection))
             {
@@ -370,36 +367,85 @@ public partial class Experience : System.Web.UI.Page
                 }
             }
         }
-
+        if (connection != null) connection.Close();
         Response.Redirect("Research.aspx");
     }
 
-    protected void experienc_preview()
+    protected void experience_preview()
     {
         if (!this.IsPostBack)
         {
-            using (MySqlConnection connection = new MySqlConnection("server=localhost;user id=root; password = tiger; database=recruitmentdatabase; persistsecurityinfo=True"))
-            {
-                connection.Open();
-
-                string retrieve_command = "Select Employer, Designation, Status, BasicPay, expFrom, expTo, Duration from experience_table where User_ID = " + 400;
-
-                using (MySqlCommand retrieve_details = new MySqlCommand(retrieve_command, connection))
-                {
-                    using (MySqlDataAdapter da = new MySqlDataAdapter())
-                    {
-                        da.SelectCommand = retrieve_details;
-                        using (DataTable dt = new DataTable())
-                        {
-                            da.Fill(dt);
-                            experienceGrid.DataSource = dt;
-                            experienceGrid.DataBind();
-                        }
-                    }
-                }
-            }
+            ShowData();
         }
 
+    }
+
+    protected void ShowData()
+    {
+
+        dt = new DataTable();
+        con = new MySqlConnection(cs);
+        con.Open();
+        adapt = new MySqlDataAdapter("Select Employer, Designation, Status, BasicPay, FromDate, ToDate, TypeOfExperience, Duration from experience_table where User_ID = " + user_id.ToString(), con);
+        adapt.Fill(dt);
+        if (dt.Rows.Count > 0)
+        {
+
+            experienceGrid.DataSource = dt;
+            experienceGrid.DataBind();
+        }
+        con.Close();
+    }
+    protected void experienceGrid_RowEditing(object sender, System.Web.UI.WebControls.GridViewEditEventArgs e)
+    {
+        //NewEditIndex property used to determine the index of the row being edited.
+        experienceGrid.EditIndex = e.NewEditIndex;
+        ShowData();
+    }
+    protected void experienceGrid_RowUpdating(object sender, System.Web.UI.WebControls.GridViewUpdateEventArgs e)
+    {
+
+        //Finding the controls from Gridview for the row which is going to update
+        Label Employer = experienceGrid.Rows[e.RowIndex].FindControl("lbl_experienceTeachUniversityName") as Label;
+        Label Designation = experienceGrid.Rows[e.RowIndex].FindControl("lbl_experienceTeachDesignation") as Label;
+        DropDownList Status = experienceGrid.Rows[e.RowIndex].FindControl("txt_experienceTeachStatus") as DropDownList;
+        TextBox BasicPay = experienceGrid.Rows[e.RowIndex].FindControl("txt_experienceTeachSalary") as TextBox;
+        TextBox From = experienceGrid.Rows[e.RowIndex].FindControl("txt_experienceTeachFrom") as TextBox;
+        TextBox To = experienceGrid.Rows[e.RowIndex].FindControl("txt_experienceTeachTo") as TextBox;
+        DropDownList TypeOfExperience = experienceGrid.Rows[e.RowIndex].FindControl("txt_experienceType") as DropDownList;
+        Label expDuration = experienceGrid.Rows[e.RowIndex].FindControl("lbl_experienceDuration") as Label;
+        con = new MySqlConnection(cs);
+        con.Open();
+        //updating the record
+        MySqlCommand cmd = con.CreateCommand();
+        cmd.CommandText = "Update experience_table set Status = @Status, BasicPay= @BasicPay, FromDate= @From, ToDate= @To, " +
+            "TypeOfExperience= @TypeOfExperience, Duration = timestampdiff(MONTH, @From, @To)" +
+            " where User_ID=@user_id and Employer= @Employer and Designation=@Designation";
+
+        cmd.Parameters.AddWithValue("@Employer", Employer.Text);
+        cmd.Parameters.AddWithValue("@Designation", Designation.Text);
+        cmd.Parameters.AddWithValue("@Status", Status.Text);
+        cmd.Parameters.AddWithValue("@BasicPay", BasicPay.Text);
+        cmd.Parameters.AddWithValue("@From", From.Text);
+        cmd.Parameters.AddWithValue("@To", To.Text);
+        cmd.Parameters.AddWithValue("@TypeOfExperience", TypeOfExperience.Text);
+        cmd.Parameters.AddWithValue("@user_id", user_id);
+
+        
+
+        cmd.ExecuteNonQuery();
+        con.Close();
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        experienceGrid.EditIndex = -1;
+        //Call ShowData_1 method for displaying updated data
+        ShowData();
+    }
+
+    protected void experienceGrid_RowCancelingEdit(object sender, System.Web.UI.WebControls.GridViewCancelEditEventArgs e)
+    {
+        //Setting the EditIndex property to -1 to cancel the Edit mode in Gridview
+        experienceGrid.EditIndex = -1;
+        ShowData();
     }
 
 }

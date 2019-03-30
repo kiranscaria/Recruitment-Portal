@@ -43,10 +43,12 @@ public partial class Registration : System.Web.UI.Page
             {
 
                 MySqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = "INSERT INTO user_credentials(Email, acc_password, Mobile_No) values (@email_id,@passwd,@mobileNo)";
+                string hashedPass = Hashing.HashPassword(pwdRegister.Text);
 
+                cmd.CommandText = "INSERT INTO user_credentials(Email, acc_password, Mobile_No) values (@email_id,@passwd,@mobileNo)";
+                
                 cmd.Parameters.AddWithValue("@email_id", regEmail.Text);
-                cmd.Parameters.AddWithValue("@passwd", pwdRegister.Text);
+                cmd.Parameters.AddWithValue("@passwd", hashedPass);
                 cmd.Parameters.AddWithValue("@mobileNo", registerMobile.Text);
 
                 int check = cmd.ExecuteNonQuery();
@@ -57,6 +59,7 @@ public partial class Registration : System.Web.UI.Page
             }
             catch (MySqlException ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 if (ex.Number == 1062)
                 {
                     emailExistWarning.Visible = true;

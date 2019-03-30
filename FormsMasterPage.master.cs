@@ -12,8 +12,9 @@ public partial class FormsMasterPage : System.Web.UI.MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Response.Cache.SetNoStore();      comment out both these lines 
-        //logoTron();                       before deployment 
+        Response.Cache.SetNoStore();      
+        logoTron();                     
+        Page.MaintainScrollPositionOnPostBack = true;
     }
 
     protected void logoTron()

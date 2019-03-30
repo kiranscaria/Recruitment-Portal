@@ -20,6 +20,12 @@
     <!--  Material Dashboard CSS    -->
     <link href="assets/css/material-dashboard.css" rel="stylesheet"/>
 
+    <!-- DatePicker CSS -->
+    <link href="assets/css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet"/>
+
+    <link href="assets/css/sweetalert2.min.css" rel="stylesheet"/>
+    <link href="assets/css/animate.css" rel="stylesheet"/>
+
     <!-- Custom Style File -->
     <link href="assets/css/styles.css" rel="stylesheet"/>
 
@@ -31,6 +37,10 @@
 	<script src="assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
 	<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="assets/js/material.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap-datepicker.min.js"> </script>
+    <script src="assets/js/sweetalert2.common.min.js"></script>
+    <script src="assets/js/bootstrap-notify.min.js"></script>
 
 	<!-- Material Dashboard javascript methods -->
 	<script src="assets/js/material-dashboard.js"></script>
@@ -92,18 +102,20 @@
 	                        <p>Declaration</p>
 	                    </a>
 	                </li>
+                    
+                    <li id="Uploads">
+	                    <a href="Uploads.aspx">
+	                        <i class="material-icons text-gray">file_upload</i>
+	                        <p>Uploads</p>
+	                    </a>
+	                </li> 
+                    
                     <li id="Preview">
 	                    <a href="Preview.aspx">
 	                        <i class="material-icons text-gray">receipt</i>
 	                        <p>Preview</p>
 	                    </a>
 	                </li>
-                    <li id="Uploads">
-	                    <a href="Uploads.aspx">
-	                        <i class="material-icons text-gray">file_upload</i>
-	                        <p>Uploads</p>
-	                    </a>
-	                </li>                    
                     <li id="Payment">
 	                    <a href="Payment.aspx">
 	                        <i class="material-icons text-gray">payment</i>
@@ -171,4 +183,66 @@
     </div>
 
 </body>
+    <script type="text/javascript">
+         function filterDigits(eventInstance) {
+             eventInstance = eventInstance || window.event;
+             key = eventInstance.keyCode || eventInstance.which;
+             if ((47 < key) && (key < 58) || key == 8) {
+                 return true;
+             } else {
+                 alert("Digits Only");
+                 if (eventInstance.preventDefault) eventInstance.preventDefault();
+                 eventInstance.returnValue = false;
+                 return false;
+             } //if
+        } //filterDigits
+        function filterDigitsFloat(eventInstance) {
+            eventInstance = eventInstance || window.event;
+            key = eventInstance.keyCode || eventInstance.which;
+            if ((47 < key) && (key < 58) || key == 8 || key == 46 ){
+                return true;
+            } else {
+                alert("Digits Only");
+                if (eventInstance.preventDefault) eventInstance.preventDefault();
+                eventInstance.returnValue = false;
+                return false;
+            } //if
+        } //filterDigits
+         function filterAlphabet(eventInstance) {
+             eventInstance = eventInstance || window.event;
+             key = eventInstance.keyCode || eventInstance.which;
+             if ((65 <= key) && (key <= 90) || key == 8 || (key >= 97) && (key <= 122) || key == 32) {
+                 return true;
+             } else {
+                 alert("Alphabets Only");
+                 if (eventInstance.preventDefault) eventInstance.preventDefault();
+                 eventInstance.returnValue = false;
+                 return false;
+             } //if
+         } //filterDigits
+         function filterAlphaNumeric(eventInstance) {
+             eventInstance = eventInstance || window.event;
+             key = eventInstance.keyCode || eventInstance.which;
+             if ((48 <= key) && (key <= 57) || (65 <= key) && (key <= 90) || key == 8 || (key >= 97) && (key <= 122) || key == 32) {
+                 return true;
+             } else {
+                 alert("Alphabets & Digits Only");
+                 if (eventInstance.preventDefault) eventInstance.preventDefault();
+                 eventInstance.returnValue = false;
+                 return false;
+             } //if
+         } //filterDigits
+         function filterAlphaNumericExt(eventInstance) {
+             eventInstance = eventInstance || window.event;
+             key = eventInstance.keyCode || eventInstance.which;
+             if ((48 <= key) && (key <= 57) || (65 <= key) && (key <= 90) || key == 8 || (key >= 97) && (key <= 122) || key == 32 || key == 44 || key == 46) {
+                 return true;
+             } else {
+                 if (eventInstance.preventDefault) eventInstance.preventDefault();
+                 eventInstance.returnValue = false;
+                 return false;
+             } //if
+         } //filterDigits
+    </script>
+    
 </html>
